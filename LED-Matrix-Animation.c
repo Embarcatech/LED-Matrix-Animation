@@ -74,20 +74,33 @@ void npWrite(){
 }
 
 
+int animacaoBasica(){
+  
+    //exemplo de uso da função npSetLED para acender um LED de cada vez
+    for (uint i = 0; i < LED_COUNT; i++){
+        npSetLED(i, 128, 0, 0);
+        sleep_ms(200);
+        npWrite();
+        }
+}
+
+
+
 int main () {
     stdio_init_all();
 
     // Iicializa a matriz de LEDs neoPixel
     npInit(LED_PIN);
-
     // Limpa a matriz de LEDs
     npClear();
     
-
-    npSetLED(0, 128, 0, 0); // A título de teste, atribui a cor vermelha ao primeiro LED com 50% de intensidade
+    //exemplo de uso da função npSetLED para acender um LED de cada vez
+    animacaoBasica();
+    //npSetLED(0, 128, 0, 0); // A título de teste, atribui a cor vermelha ao primeiro LED com 50% de intensidade
 
     // Escreve o buffer de LEDs no controlador
-    npWrite();
+//    npWrite();
+
     while(true){
         sleep_ms(1000);
     }
