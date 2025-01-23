@@ -8,7 +8,16 @@
 
 // Definição da quantidade de LEDs e o pino de controle
 #define LED_COUNT 25
-#define LED_PIN 7
+
+#define MATRIX_LED_PIN 7 // PINO DA MATRIZ DE LEDS ws2818b
+#define BUZZER_PIN 21 // PINO DO BUZZER
+
+// Matrizes com nomes de colunas e linhas - GPIO - BitDogLab
+//Portas GPIO sem função específica definida
+const uint LINHAS[4] = {18, 19, 20, 4}; 
+const uint COLUNAS[4] = {16, 17, 9, 8};
+
+
 
 // Definição de pixel GRB
 struct pixel_t{
@@ -90,7 +99,7 @@ int main () {
     stdio_init_all();
 
     // Iicializa a matriz de LEDs neoPixel
-    npInit(LED_PIN);
+    npInit(MATRIX_LED_PIN);
     // Limpa a matriz de LEDs
     npClear();
     

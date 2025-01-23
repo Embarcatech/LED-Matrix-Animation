@@ -56,8 +56,8 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
 ## **Diagrama de Conexões**
 
 1. **Teclado Matricial (4x4):**
-   - Linhas -> GPIOs 8, 7, 6, 5
-   - Colunas -> GPIOs 4, 3, 2, 1
+   - Linhas -> GPIOs 18, 19, 20, 4
+   - Colunas -> GPIOs 16, 17, 9, 8
 
 2. **Matriz de LEDs RGB 5x5 (WS2812):**
    - Conectada ao GPIO 7
