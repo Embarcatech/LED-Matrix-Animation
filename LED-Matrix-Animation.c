@@ -49,8 +49,47 @@ void npInit(uint pin){
     }
 }
 
-int main () {
+// Função para atribuar uma cor a um LED
+void npSetLED(const uint index, const uint8_t r, const uint8_t g, const uint8_t b){
+    leds[index].G = g;
+    leds[index].R = r;
+    leds[index].B = b;
+}
 
-    printf("Hello, Pico!\n");
+// Limpa o buffer de LEDs
+void npClear(){
+    for(uint i = 0;i < LED_COUNT; i++){
+        npSetLED(i, 0, 0, 0);
+    }
+}
+// Escreve o buffer de LEDs no controlador
+void npWrite(){
+    // Escreve cada dado de 8 bits dos pixels no buffer da máquina PIO
+    for (uint i = 0; i < LED_COUNT; i++){
+        pio_sm_put_blocking(np_pio, sm, leds[i].G);
+        pio_sm_put_blocking(np_pio, sm, leds[i].R);
+        pio_sm_put_blocking(np_pio, sm, leds[i].B);
+    }
+    sleep_us(100); // Espera 100us, sinal de RESET do datasheet.
+}
+
+
+int main () {
+    stdio_init_all();
+
+    // Iicializa a matriz de LEDs neoPixel
+    npInit(LED_PIN);
+
+    // Limpa a matriz de LEDs
+    npClear();
+    
+
+    npSetLED(0, 128, 0, 0); // A título de teste, atribui a cor vermelha ao primeiro LED com 50% de intensidade
+
+    // Escreve o buffer de LEDs no controlador
+    npWrite();
+    while(true){
+        sleep_ms(1000);
+    }
     
 }
