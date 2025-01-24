@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmware = 'build/LED-Matrix-Animation.uf2'
+elf = 'build/LED-Matrix-Animation.elf'
