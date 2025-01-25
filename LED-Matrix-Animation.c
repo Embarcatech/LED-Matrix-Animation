@@ -141,8 +141,62 @@ int main () {
     // Escreve o buffer de LEDs no controlador
    //npWrite();
 
-    while(true){
-        sleep_ms(1000);
-    }
+    while (true) {
+        char tecla = leitura_teclado();
+        printf("Tecla pressionada: %c\n", tecla);
+               
+        // Configuração dos LEDs com base na tecla pressionada
+        switch (tecla) {
+            case 'A':
+              //  set_leds(1, 0, 0); // Botão A acende o LED vermelho
+           //     printf("Liganado o LED vermelho\n");
+               // set_buzzer(1);     // Liga o buzzer
+                sleep_ms(200);     // Tempo do som do buzzer
+                break;
+           case 'B':
+     //           set_leds(0, 0, 1); // Botão B acende o Led azul
+      //          printf("Liganado o LED azul\n");
+
+     //           set_buzzer(1);     // Liga o buzzer
+                sleep_ms(200);     // Tempo do som do buzzer
+                break;
+            case 'C':
+     //           set_leds(0, 1, 0); //Botão C acende o LED verde
+    //            printf("Liganado o LED verde\n");
+    //            set_buzzer(1);     // Liga o buzzer
+                sleep_ms(200);     // Tempo do som do buzzer
+                break;
+            case 'D':
+     //           set_leds (1,1,1); // Botão D acende todos os LEDS
+    //            printf("Liganado todos os LEDs\n");
+     //           set_buzzer(1);     // Liga o buzzer
+                sleep_ms(200);     // Tempo do som do buzzer
+                break;
+
+            case '#':
+     //           set_leds(0, 0, 0); // Desliga todos os LEDs
+     //           printf("Desligando todos os LEDs\n");
+     //           set_buzzer(1);     // Liga o buzzer
+                sleep_ms(200);     // Tempo do som do buzzer
+      //          set_buzzer(0);     // Desliga o buzzer
+                break;
+
+            case '0':
+                animacaoTecla0();
+                printf("Executando animação tecla 0\n");
+                sleep_ms(300);     // Tempo do som do buzzer
+     //           set_buzzer(0);     // Desliga o buzzer 
+                break;
+
+            default:
+      //          set_leds(0, 0, 0); // Desliga todos os LEDs
+     //           set_buzzer(0);     // Desliga o buzzer
+                break;
+    } 
     
+    sleep_ms(100); // Estabilização
+
+    }
+
+    return 0;
 }
