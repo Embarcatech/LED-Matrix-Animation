@@ -43,9 +43,32 @@ int main () {
 
     // Escreve o buffer de LEDs no controlador
    //npWrite();
-
-    while(true){
-        sleep_ms(1000);
-    }
     
+    while(true) char tecla = leitura_teclado();
+        printf("Tecla pressionada: %c\n", tecla);
+       
+        switch (tecla) {
+
+            case '0': animacao_0(); break;
+            case '1': animacao_1(); break;
+            case '2': animacao_2(); break;
+            case '3': animacao_3(); break;
+            case '4': animacao_4(); break;
+            case '5': animacao_5(); break;
+            case '6': animacao_6(); break;
+            case '7': animacao_7(); break;
+            case '8': animacao_8(); break;
+            case '9': animacao_9(); break;
+            case 'A': npClear(); npWrite(); break;
+            case 'B': todas_azul(); break;
+            case 'C': todas_vermelho(); break;
+            case 'D': todas_verde(); break;
+            case '#': todas_branco(); break;
+            case '*': reset_usb_boot(0, 0); break;
+            default: break;
+        }
+
+        sleep_ms(100); // Estabilização
+    }
+    return 0;
 }
