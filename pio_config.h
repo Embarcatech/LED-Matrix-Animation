@@ -81,3 +81,15 @@ void npWrite(){
     }
     sleep_us(100); // Espera 100us, sinal de RESET do datasheet.
 }
+
+// Atribui uma cor a vários LEDs
+void npSetManyLEDs(uint *posicaoLEDs, size_t tamanhoVetor, uint8_t r, uint8_t g, uint8_t b) {
+    for (uint i = 0; i < tamanhoVetor; i++) {
+        uint index = posicaoLEDs[i]; // Obtem o índice do LED
+        if (index < LED_COUNT) { // Verifica se o índice está dentro do intervalo válido
+            leds[index].R = r;
+            leds[index].G = g;
+            leds[index].B = b;
+        }
+    }
+}
