@@ -28,6 +28,49 @@ int animacaoBasica(){
         }
 }
 
+void animacaoTecla0(){
+    // Acende o LED 12 por 200ms
+    npSetLED(12, 255, 0, 0); // LED 12 com cor vermelha
+    npWrite();
+    sleep_ms(200);
+
+    // Apaga o LED 12
+    npSetLED(12, 0, 0, 0);
+    npWrite();
+    sleep_ms(200);
+
+    // LEDs 6, 7, 8, 11, 13, 16, 18 com cor azul
+    uint posicoes[8] = {6, 7, 8, 11, 13, 16, 17, 18};
+    npSetManyLEDs(posicoes,8, 0, 0, 255); 
+    npWrite();
+    sleep_ms(200); 
+
+    npClear(); // Apaga todos os LEDs
+    sleep_ms(200);
+    uint posicoesBorda[] = {0, 1, 2, 3, 4, 9, 14, 19, 24, 23, 22, 21, 20, 15, 10, 5};
+    npSetManyLEDs(posicoesBorda, 16, 255, 0, 0);
+    npWrite();
+    sleep_ms(200);
+
+    npClear();
+    sleep_ms(200);
+    npSetManyLEDs(posicoesBorda, 16, 0, 0, 255);
+    npWrite();
+    sleep_ms(200); 
+
+    npClear();
+    sleep_ms(200);
+    npSetManyLEDs(posicoes,8,255, 0, 0);
+    npWrite();
+    sleep_ms(200);
+
+    npClear();
+    sleep_ms(200);
+    npSetLED(12, 0, 0, 255);
+    npWrite();
+    sleep_ms(200);
+}
+
 
 int main () {
     stdio_init_all();
