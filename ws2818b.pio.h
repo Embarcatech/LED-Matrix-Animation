@@ -13,22 +13,25 @@
 // ------- //
 
 #define ws2818b_wrap_target 0
-#define ws2818b_wrap 3
+#define ws2818b_wrap 6
 #define ws2818b_pio_version 0
 
 static const uint16_t ws2818b_program_instructions[] = {
             //     .wrap_target
-    0x6221, //  0: out    x, 1            side 0 [2] 
-    0x1123, //  1: jmp    !x, 3           side 1 [1] 
-    0x1400, //  2: jmp    0               side 1 [4] 
-    0xa442, //  3: nop                    side 0 [4] 
+    0x6021, //  0: out    x, 1                       
+    0x0024, //  1: jmp    !x, 4                      
+    0xe401, //  2: set    pins, 1                [4] 
+    0x0006, //  3: jmp    6                          
+    0xe201, //  4: set    pins, 1                [2] 
+    0xe200, //  5: set    pins, 0                [2] 
+    0xe100, //  6: set    pins, 0                [1] 
             //     .wrap
 };
 
 #if !PICO_NO_HARDWARE
 static const struct pio_program ws2818b_program = {
     .instructions = ws2818b_program_instructions,
-    .length = 4,
+    .length = 7,
     .origin = -1,
     .pio_version = ws2818b_pio_version,
 #if PICO_PIO_VERSION > 0
@@ -39,23 +42,31 @@ static const struct pio_program ws2818b_program = {
 static inline pio_sm_config ws2818b_program_get_default_config(uint offset) {
     pio_sm_config c = pio_get_default_sm_config();
     sm_config_set_wrap(&c, offset + ws2818b_wrap_target, offset + ws2818b_wrap);
-    sm_config_set_sideset(&c, 1, false, false);
     return c;
 }
 
-#include "hardware/clocks.h"
-void ws2818b_program_init(PIO pio, uint sm, uint offset, uint pin, float freq) {
-  pio_gpio_init(pio, pin);
-  pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
-  // Program configuration.
-  pio_sm_config c = ws2818b_program_get_default_config(offset);
-  sm_config_set_sideset_pins(&c, pin); // Uses sideset pins.
-  sm_config_set_out_shift(&c, true, true, 8); // 8 bit transfers, right-shift.
-  sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX); // Use only TX FIFO.
-  float prescaler = clock_get_hz(clk_sys) / (10.f * freq); // 10 cycles per transmission, freq is frequency of encoded bits.
-  sm_config_set_clkdiv(&c, prescaler);
-  pio_sm_init(pio, sm, offset, &c);
-  pio_sm_set_enabled(pio, sm, true);
+static inline void ws2818b_program_init(PIO pio, uint sm, uint offset, uint pin)
+{
+    pio_sm_config c = ws2818b_program_get_default_config(offset);
+    // Set pin to be part of set output group, i.e. set by set instruction
+    sm_config_set_set_pins(&c, pin, 1);
+    // Attach pio to the GPIO
+    pio_gpio_init(pio, pin);
+    // Set pin direction to output at the PIO
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
+    // Set pio clock to 8MHz, giving 10 cycles per LED binary digit
+    float div = clock_get_hz(clk_sys) / 8000000.0;
+    sm_config_set_clkdiv(&c, div);
+    // Give all the FIFO space to TX (not using RX)
+    sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);
+    // Shift to the left, use autopull, next pull threshold 24 bits
+    sm_config_set_out_shift(&c, false, true, 24);
+    // Set sticky-- continue to drive value from last set/out.  Other stuff off.
+    sm_config_set_out_special(&c, true, false, false);
+    // Load configuration, and jump to the start of the program
+    pio_sm_init(pio, sm, offset, &c);
+    // enable this pio state machine
+    pio_sm_set_enabled(pio, sm, true);
 }
 
 #endif
