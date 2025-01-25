@@ -2,6 +2,7 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "hardware/clocks.h"
+#include "pico/bootrom.h"
 
 // Biblioteca gerada pelo arquivo ws2818b.pio 
 #include "ws2818b.pio.h"
@@ -83,29 +84,7 @@ void npWrite(){
 }
 
 
-
-
-void animacaoQuadradoCentro(){
-    //Definir as bordas do quadrado (5X5)
-    uint borda[16]={0,1,2,3,4,     //base
-                    5,9,        
-                    10,14,
-                    15,19,
-                    20,21,22,23,24}; //Fundo 
-    npClear();
-
-    //Acender as bordas do quadrado com cor vermelha
-    for (int i = 0; i<16;i++){
-        npSetLED(borda[i],128,0,0);
-    }
-
-    //Acender o centro do quadrado com a cor verde
-    npSetLED(12,0,128,0);
-
-    //Atualiza os LEDs
-    npWrite();
-}
-
+// INICIO DA 1 ANIMAÇÃO
 void animacaoQuadradoPulsante(){
     //Define as posições dos LEDs que formarão o quadrado
     const uint led_sequence[] = {0,9,10,19,20,21,22,23,24,15,14,5,4,3,2,1,0,12};
@@ -113,9 +92,9 @@ void animacaoQuadradoPulsante(){
 
     for(int i = 0; i<led_count; i++){
         if(led_sequence[i]==12){
-            npSetLED(led_sequence[i],0,128,0);
+            npSetLED(led_sequence[i],255,0,255);
         }else{
-        npSetLED(led_sequence[i],128,0,0);
+        npSetLED(led_sequence[i],255,0,0);
         }
     }
         npWrite();
@@ -127,28 +106,80 @@ void animacaoQuadradoPulsante(){
         npWrite();
         sleep_ms(200);
     }
-
-
 }
+// FIM DA 1 ANIMAÇÃO
+
+
+//INICIO DA SEGUNDA ANIMAÇÃO
+
+void animacaoOnda(){
+   //Define as posiçoes dos LEDs que formarão a sequencia
+   const uint led_sequence[] = {0,9,10,19,20,21,18,11,8,1,2,7,12,17,22,23,16,13,6,3,4,5,14,15,24};
+    const uint led_count = sizeof(led_sequence) / sizeof(led_sequence[0]);
+
+    //Define a velocidade do cometa e do rastro
+    const uint tempo_rastro = 100;
+    const uint tempo_cometa = 100;
+    
+    //Define as cores
+    const uint8_t cometa_R = 255;
+    const uint8_t cometa_G = 0;
+    const uint8_t cometa_B = 0;
+    const uint8_t rastro_R = 0;
+    const uint8_t rastro_G = 0;
+    const uint8_t rastro_B = 255;
+
+    npClear();//Limpa os LEDs antes de iniciar a animação
+
+    //Faz o movimento de onda
+    for(uint i = 0; i<led_count;i++){
+        npClear();
+
+        //Acende o rastro até a posição atual
+        for(uint j=0; j<=i; j++){
+            npSetLED(led_sequence[j],rastro_R,rastro_G,rastro_B);//rastro azul
+            }
+
+            //Acende o cometa na posição atual
+            npSetLED(led_sequence[i],cometa_R,cometa_G,cometa_B);//Cometa vermelho
+
+            npWrite(); //Atualiza os LEDs
+            sleep_ms(tempo_rastro);
+    }
+            npClear();
+            npWrite();
+}
+
+// FIM DA SEGUNDA ANIMAÇÃO
+
 int main () {
     stdio_init_all();
-
-    // Iicializa a matriz de LEDs neoPixel
+    int opcao;
+    printf("Sistema iniciado\n");
+    // Inicializa a matriz de LEDs NeoPixel
     npInit(MATRIX_LED_PIN);
     // Limpa a matriz de LEDs
     npClear();
-    
-    //exemplo de uso da função npSetLED para acender um LED de cada vez
-    //animacaoBasica();
-    //npSetLED(0, 128, 0, 0); // A título de teste, atribui a cor vermelha ao primeiro LED com 50% de intensidade
-    //animacaoCorrida();
-    //animacaoQuadradoCentro();
-    animacaoQuadradoPulsante();
-    // Escreve o buffer de LEDs no controlador
-//    npWrite();
 
-    while(true){
-        sleep_ms(1000);
-    }
-    
+    while (true) {
+        printf("\nDigite:\n");
+        printf(" 1 - quadrado\n");
+        printf(" 2 - onda\n");
+        printf(" 0 - Sair\n");
+        printf("Digite o comando: ");
+
+        // Lê a opção escolhida
+        opcao = getchar() - '0'; // Converte o caractere para inteiro
+
+        // Processa a opção
+        if (opcao == 1) {
+            animacaoQuadradoPulsante();
+        } else if (opcao == 2) {
+            animacaoOnda();
+        } else if (opcao == 0) {
+            break; // Encerra o programa
+        } else {
+            printf("\nComando inválido\n");
+ }
+}
 }
