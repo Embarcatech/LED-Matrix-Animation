@@ -163,8 +163,8 @@ int main () {
 
     while (true) {
         printf("\nDigite:\n");
-        printf(" 1 - quadrado\n");
-        printf(" 2 - onda\n");
+        printf(" 1 - Animacao \n");
+        printf(" 2 - Animacao\n");
         printf(" 0 - Sair\n");
         printf("Digite o comando: ");
 
@@ -177,6 +177,8 @@ int main () {
         } else if (opcao == 2) {
             animacaoOnda();
         } else if (opcao == 0) {
+            printf("\nSaindo do modo de execução\n");
+            reset_usb_boot(0, 0);
             break; // Encerra o programa
         } else {
             printf("\nComando inválido\n");
