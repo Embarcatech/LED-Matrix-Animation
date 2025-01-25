@@ -8,7 +8,16 @@
 
 // Definição da quantidade de LEDs e o pino de controle
 #define LED_COUNT 25
-#define LED_PIN 7
+
+#define MATRIX_LED_PIN 7 // PINO DA MATRIZ DE LEDS ws2818b
+#define BUZZER_PIN 21 // PINO DO BUZZER
+
+// Matrizes com nomes de colunas e linhas - GPIO - BitDogLab
+//Portas GPIO sem função específica definida
+const uint LINHAS[4] = {18, 19, 20, 4}; 
+const uint COLUNAS[4] = {16, 17, 9, 8};
+
+
 
 // Definição de pixel GRB
 struct pixel_t{
@@ -74,30 +83,67 @@ void npWrite(){
 }
 
 
-int animacaoBasica(){
-  
-    //exemplo de uso da função npSetLED para acender um LED de cada vez
-    for (uint i = 0; i < LED_COUNT; i++){
-        npSetLED(i, 128, 0, 0);
-        sleep_ms(200);
-        npWrite();
-        }
+
+
+void animacaoQuadradoCentro(){
+    //Definir as bordas do quadrado (5X5)
+    uint borda[16]={0,1,2,3,4,     //base
+                    5,9,        
+                    10,14,
+                    15,19,
+                    20,21,22,23,24}; //Fundo 
+    npClear();
+
+    //Acender as bordas do quadrado com cor vermelha
+    for (int i = 0; i<16;i++){
+        npSetLED(borda[i],128,0,0);
+    }
+
+    //Acender o centro do quadrado com a cor verde
+    npSetLED(12,0,128,0);
+
+    //Atualiza os LEDs
+    npWrite();
 }
 
+void animacaoQuadradoPulsante(){
+    //Define as posições dos LEDs que formarão o quadrado
+    const uint led_sequence[] = {0,9,10,19,20,21,22,23,24,15,14,5,4,3,2,1,0,12};
+    const uint led_count = sizeof(led_sequence)/ sizeof(led_sequence[0]);
+
+    for(int i = 0; i<led_count; i++){
+        if(led_sequence[i]==12){
+            npSetLED(led_sequence[i],0,128,0);
+        }else{
+        npSetLED(led_sequence[i],128,0,0);
+        }
+    }
+        npWrite();
+        sleep_ms(10);
+    
+
+    for (uint i =0; i<led_count; i++){
+        npSetLED(led_sequence[i],0,0,0);
+        npWrite();
+        sleep_ms(200);
+    }
 
 
+}
 int main () {
     stdio_init_all();
 
     // Iicializa a matriz de LEDs neoPixel
-    npInit(LED_PIN);
+    npInit(MATRIX_LED_PIN);
     // Limpa a matriz de LEDs
     npClear();
     
     //exemplo de uso da função npSetLED para acender um LED de cada vez
-    animacaoBasica();
+    //animacaoBasica();
     //npSetLED(0, 128, 0, 0); // A título de teste, atribui a cor vermelha ao primeiro LED com 50% de intensidade
-
+    //animacaoCorrida();
+    //animacaoQuadradoCentro();
+    animacaoQuadradoPulsante();
     // Escreve o buffer de LEDs no controlador
 //    npWrite();
 
