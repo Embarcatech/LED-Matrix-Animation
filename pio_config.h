@@ -8,10 +8,12 @@
 #define LED_COUNT 25
 
 // Definição de pixel GRB
+// Cada pixel é composto por 3 bytes, um para cada cor 24bits
 struct pixel_t{
     uint8_t G,R,B; // Três valores de 8 bits para cada cor
 };
 
+// Definição de um tipo de dado para um pixel
 typedef struct pixel_t pixel_t;
 typedef pixel_t npLED_t; // Mudança de nome para facilitar a leitura
 
@@ -20,6 +22,7 @@ npLED_t leds [LED_COUNT];
 
 
 // Função para converter cores em formato RGB para o protocolo da matriz de LEDs
+// O protocolo é GRB, ou seja, o primeiro byte é o verde, o segundo é o vermelho e o terceiro é o azul
 uint32_t matriz_rgb(uint8_t b, uint8_t r, uint8_t g) {
     unsigned char R, G, B;
     R = (unsigned char)r;

@@ -2,7 +2,7 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "hardware/clocks.h"
-#include "PIO-CONFIG.h"
+#include "pio_config.h"
 
 // Biblioteca gerada pelo arquivo ws2818b.pio 
 #include "ws2818b.pio.h"
