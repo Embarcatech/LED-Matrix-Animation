@@ -26,6 +26,11 @@ typedef struct {
     int blue;
 } LED;
 
+// Matriz de LEDs 4x4
+#define ROWS 4
+#define COLS 4
+LED ledMatrix[ROWS][COLS];
+
 // Função para converter a posição do matriz para uma posição do vetor.
 int getIndex(int x, int y) {
     // Se a linha for par (0, 2, 4), percorremos da esquerda para a direita.
@@ -34,6 +39,17 @@ int getIndex(int x, int y) {
         return 24-(y * 5 + x); // Linha par (esquerda para direita).
     } else {
         return 24-(y * 5 + (4 - x)); // Linha ímpar (direita para esquerda).
+    }
+}
+
+// Inicializa a matriz de LEDs
+void initializeMatrix(LED matrix[ROWS][COLS], int green, int red, int blue) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            matrix[i][j].green = green;
+            matrix[i][j].red = red;
+            matrix[i][j].blue = blue;
+        }
     }
 }
 
