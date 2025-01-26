@@ -40,6 +40,5 @@
     "stdlib.h": "c",
     "ws2818b.pio.h": "c",
     "gpio.h": "c"
-  },
-  "C_Cpp.errorSquiggles": "disabled"
+  }
 }

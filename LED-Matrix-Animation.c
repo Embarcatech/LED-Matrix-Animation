@@ -211,8 +211,6 @@ void animacaoCoracaoPulsante() {
     };
     const uint led_count = sizeof(led_sequence) / sizeof(led_sequence[0]);
 
-    tocarMusicaCurta();
-
     for (int i = 0; i < 1; i++) { // Animação com 1 ciclo de pulso
         for (uint8_t intensidade = 0; intensidade <= 51; intensidade += 15) { // Intensidade máxima reduzida (20% do brilho máximo)
             for (uint j = 0; j < led_count; j++) {
@@ -254,7 +252,7 @@ int main () {
 
     //exemplo de uso da função npSetLED para acender um LED de cada vez
     //animacaoBasica();
-
+ //   tocarMusicaCurta(); //teste buzzer
     
     // Escreve o buffer de LEDs no controlador
 //   npWrite();
@@ -354,7 +352,7 @@ int main () {
                 printf("Executando animação tecla 9\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
-            
+
 
             default:
       //          set_leds(0, 0, 0); // Desliga todos os LEDs
