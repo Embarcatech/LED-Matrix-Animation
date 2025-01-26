@@ -60,7 +60,9 @@ target_include_directories(LED-Matrix-Animation PRIVATE
 target_link_libraries(LED-Matrix-Animation 
         hardware_pio
         hardware_clocks
+        hardware_pwm
         )
 
+        
 pico_add_extra_outputs(LED-Matrix-Animation)
 
