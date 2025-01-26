@@ -16,6 +16,8 @@
 
 #define MATRIX_LED_PIN 7 // PINO DA MATRIZ DE LEDS ws2818b
 #define BUZZER_PIN 21 // PINO DO BUZZER
+#define BUTTON_PIN 5  // PINO DO BOTÃO A
+#define BUTTON_PIN_B 6 // PINO DO BOTÃO B
 
 
 int animacaoBasica(){
@@ -248,7 +250,12 @@ int main () {
     // Limpa a matriz de LEDs
     npClear();
 
+    gpio_init(BUTTON_PIN);
+    gpio_set_dir(BUTTON_PIN, GPIO_IN);
+    gpio_pull_up(BUTTON_PIN);
+
     iniciar_teclado();    
+    
 
     //exemplo de uso da função npSetLED para acender um LED de cada vez
     //animacaoBasica();
@@ -257,9 +264,15 @@ int main () {
     // Escreve o buffer de LEDs no controlador
 //   npWrite();
 
+
+
     while(true){
 //  sleep_ms(1000); // Tempo de teste
-
+ // Verifica se o botão foi pressionado
+        if (!gpio_get(BUTTON_PIN)) { // Botão pressionado (nível baixo)
+            printf("Botão pressionado! Executando ação...\n");
+            tocarMusicaCurta();
+        }
         // Leitura do teclado
        char tecla = leitura_teclado();
         printf("Tecla pressionada: %c\n", tecla);
