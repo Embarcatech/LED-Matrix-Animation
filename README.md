@@ -3,9 +3,6 @@
 ## **Líder da Equipe**
 Hugo S. Dias
 
-## **Sub-Líder**
-`A definir`
-
 ---
 
 ## **Descrição Geral**
@@ -34,23 +31,23 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
 
 ## **Colaboradores e Proposta para Divisão das Tarefas**
 
-1. **Líder da equipe** - Hugo S. Dias
-2. **Inicialização e preparação codigo base - inicial**. - `A definir` 
-3. **Configuração e integração do teclado matricial (4x4).** - `A definir`  
-4. **Controle e animação dos LEDs para tecla "0".** - `A definir`
-5. **Controle e animação dos LEDs para tecla "1".** - `A definir`
-6. **Controle e animação dos LEDs para tecla "2".** - `A definir`
-7. **Controle e animação dos LEDs para tecla "3".** - `A definir`
-8. **Controle e animação dos LEDs para tecla "4".** - `A definir`
-9. **Controle e animação dos LEDs para tecla "5".** - `A definir`
-10. **Controle e animação dos LEDs para tecla "6".** - `A definir`
-11. **Controle e animação dos LEDs para tecla "7".** - `A definir`
-12. **Controle e animação dos LEDs para tecla "8".** - `Gabriel Santos de Lacerda`
-13. **Controle e animação dos LEDs para tecla "9".** - `Gabriel Santos de Lacerda`
+1. **Líder da equipe** - `Hugo S. Dias`
+2. **Inicialização e preparação codigo base - inicial**. - `JACKSON SILVA DOS SANTOS` 
+3. **Configuração e integração do teclado matricial (4x4).** - `HUGO S. DIAS`  
+4. **Controle e animação dos LEDs para tecla "0".** - `JACKSON SILVA DOS SANTOS`
+5. **Controle e animação dos LEDs para tecla "1".** - `ALINNE DE SOUZA SANTOS CASTRO`
+6. **Controle e animação dos LEDs para tecla "2".** - `ALINNE DE SOUZA SANTOS CASTRO`
+7. **Controle e animação dos LEDs para tecla "3".** - `JOÃO VITOR SOARES AMORIM`
+8. **Controle e animação dos LEDs para tecla "4".** - `JOÃO VITOR SOARES AMORIM`
+9. **Controle e animação dos LEDs para tecla "5".** - `HUGO S. DIAS`
+10. **Controle e animação dos LEDs para tecla "6".** - `SÉRGIO EMÍLIO DA CUNHA MEIRA SANTOS`
+11. **Controle e animação dos LEDs para tecla "7".** - `SÉRGIO EMÍLIO DA CUNHA MEIRA SANTOS`
+12. **Controle e animação dos LEDs para tecla "8".** - `GABRIEL SANTOS DE LACERDA`
+13. **Controle e animação dos LEDs para tecla "9".** - `GABRIEL SANTOS DE LACERDA`
 14. **Configuração e execução das funcionalidades das teclas A, B, C, D e #** - `A definir`
 15. **Implementação da tecla \* (modo gravação via software).** - `A definir`
-16. **Configuração do buzzer (opcional) e participação nos testes.** - `A definir`
-
+16. **Configuração do buzzer (opcional) e participação nos testes.** - `ARTHUR ALENCAR LOPES TRINDADE`
+17. **Documentação, usabilidade e IHM - Interface Home Maquina no README.md** - `A definir`
 ---
 
 ## **Diagrama de Conexões**
@@ -64,7 +61,9 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
 
 3. **Buzzer (opcional):**
    - Conectado ao GPIO 21
-
+   
+4. **Botões A e B - BitDogLab - Adicional**
+   - Conectado ao GPIO 5 e 6
 ---
 
 ## **Configuração do Ambiente**
