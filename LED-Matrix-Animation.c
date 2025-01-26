@@ -3,6 +3,8 @@
 #include "hardware/gpio.h"
 #include "hardware/clocks.h"
 #include "pio_config.h"
+#include "hardware/pwm.h"
+
 
 // Biblioteca gerada pelo arquivo ws2818b.pio 
 #include "ws2818b.pio.h"
@@ -16,7 +18,6 @@
 #define BUZZER_PIN 21 // PINO DO BUZZER
 
 
-
 int animacaoBasica(){
   
      npClear();
@@ -28,6 +29,46 @@ int animacaoBasica(){
         }
 
 }
+
+// Funcao auxiliar para utilização do buzzer de forma modular
+void set_pwm_pin(uint pin, uint freq, uint duty_c) {
+		gpio_set_function(pin, GPIO_FUNC_PWM);
+		uint slice_num = pwm_gpio_to_slice_num(pin);
+    		pwm_config config = pwm_get_default_config();
+		float div = (float)clock_get_hz(clk_sys) / (freq * 10000);
+		pwm_config_set_clkdiv(&config, div);
+		pwm_config_set_wrap(&config, 10000); 
+		pwm_init(slice_num, &config, true); 
+		pwm_set_gpio_level(pin, duty_c); 
+	};
+
+
+// Musica simples buzzer - Arthur A L Trindade
+void tocarMusicaCurta() {
+    const uint16_t frequencias[] = {392, 392, 349, 330, 392, 392, 349, 330, 392, 440, 392,
+                                    349, 330, 294, 294, 330, 349, 294,330, 349, 294, 330,
+                                    349, 392, 440, 392, 349, 330, 294, 262}; // Notas: SOL, FA, MI, etc.
+    const uint16_t duty[] =        {300, 300, 400, 400, 300, 300, 400, 400, 300, 300, 300,
+                                    300, 300, 400, 300, 300, 300, 300, 300, 300, 300, 300,
+                                    300, 300, 300, 300, 300, 300, 400, 600};     // Ciclo de trabalho em ms
+    const uint16_t duracoes[] =    {350, 350, 300, 300, 350, 300, 300, 300, 300, 350, 300,
+                                    300, 300, 350, 300, 300, 300, 300, 300, 300, 300, 300,
+                                    300, 300, 300, 300, 350, 350, 350, 300};     // Durações em ms
+    
+    const uint16_t notas = sizeof(frequencias) / sizeof(frequencias[0]);    // Durações das notas em ms
+    uint slice_num = pwm_gpio_to_slice_num(BUZZER_PIN);
+
+    for (uint16_t i = 0; i < notas; i++) {
+        set_pwm_pin(BUZZER_PIN, frequencias[i], duty[i]);
+        sleep_ms(duracoes[i]);
+        pwm_set_enabled(slice_num, false);
+        sleep_ms(50); // Pausa entre as notas
+    }
+
+    pwm_set_enabled(slice_num, false);
+
+}
+
 
 //ok implementado
 void animacaoTecla0(){
@@ -170,6 +211,8 @@ void animacaoCoracaoPulsante() {
     };
     const uint led_count = sizeof(led_sequence) / sizeof(led_sequence[0]);
 
+    tocarMusicaCurta();
+
     for (int i = 0; i < 1; i++) { // Animação com 1 ciclo de pulso
         for (uint8_t intensidade = 0; intensidade <= 51; intensidade += 15) { // Intensidade máxima reduzida (20% do brilho máximo)
             for (uint j = 0; j < led_count; j++) {
@@ -188,6 +231,7 @@ void animacaoCoracaoPulsante() {
     }
 }
 // FIM DA 4 ANIMAÇÃO
+
 
 int reboot_loader()
 {
