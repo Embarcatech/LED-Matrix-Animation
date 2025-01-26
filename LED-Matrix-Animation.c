@@ -19,6 +19,12 @@
 #define BUTTON_PIN_A 5 // PINO DO BOTÃO A
 #define BUTTON_PIN_B 6 // PINO DO BOTÃO B
 
+// Estrutura para cores GRB
+typedef struct {
+    int green;
+    int red;
+    int blue;
+} LED;
 
 // Função para converter a posição do matriz para uma posição do vetor.
 int getIndex(int x, int y) {
