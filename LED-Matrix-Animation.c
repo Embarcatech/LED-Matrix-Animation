@@ -22,6 +22,7 @@ const uint COLUNAS[4] = {16, 17, 9, 8};
 //função para inicializar o teclado
 
 // Mapeamento das teclas em uma matriz 4x4
+// Mapeamento das teclas em uma matriz 4x4
 char teclas[4][4] = {
     {'1', '2', '3', 'A'},
     {'4', '5', '6', 'B'},
@@ -243,22 +244,77 @@ int main () {
     npInit(MATRIX_LED_PIN);
     // Limpa a matriz de LEDs
     npClear();
-    
+
+    iniciar_teclado();    
     //exemplo de uso da função npSetLED para acender um LED de cada vez
     //animacaoBasica();
     //npSetLED(0, 128, 0, 0); // A título de teste, atribui a cor vermelha ao primeiro LED com 50% de intensidade
     //anim
     
-    animacaoQuadradoPulsante(); //tecla 1
-    animacaoOnda(); //tecla 2
-    animacaoEspiral(); // tecla 3
-    animacaoCoracaoPulsante(); //tecla 4
+  //  animacaoQuadradoPulsante(); //tecla 1
+  //  animacaoOnda(); //tecla 2
+  //  animacaoEspiral(); // tecla 3
+  //  animacaoCoracaoPulsante(); //tecla 4
     
     // Escreve o buffer de LEDs no controlador
    //npWrite();
 
     while(true){
-        sleep_ms(1000);
+//        sleep_ms(1000);
+       char tecla = leitura_teclado();
+        printf("Tecla pressionada: %c\n", tecla);
+               
+        // Configuração dos LEDs com base na tecla pressionada
+        switch (tecla) {
+            case 'A':
+              //  set_leds(1, 0, 0); // Botão A acende o LED vermelho
+                printf("Impresso o letra A\n");
+               // set_buzzer(1);     // Liga o buzzer
+                sleep_ms(200);     // Tempo do som do buzzer
+                break;
+           case 'B':
+                printf("Impresso o letra B\n");
+      //          printf("Liganado o LED azul\n");
+
+     //           set_buzzer(1);     // Liga o buzzer
+                sleep_ms(200);     // Tempo do som do buzzer
+                break;
+            case 'C':
+     //           set_leds(0, 1, 0); //Botão C acende o LED verde
+    //            printf("Liganado o LED verde\n");
+    //            set_buzzer(1);     // Liga o buzzer
+                sleep_ms(200);     // Tempo do som do buzzer
+                break;
+            case 'D':
+     //           set_leds (1,1,1); // Botão D acende todos os LEDS
+    //            printf("Liganado todos os LEDs\n");
+     //           set_buzzer(1);     // Liga o buzzer
+                sleep_ms(200);     // Tempo do som do buzzer
+                break;
+
+            case '#':
+     //           set_leds(0, 0, 0); // Desliga todos os LEDs
+     //           printf("Desligando todos os LEDs\n");
+     //           set_buzzer(1);     // Liga o buzzer
+                sleep_ms(200);     // Tempo do som do buzzer
+      //          set_buzzer(0);     // Desliga o buzzer
+                break;
+
+            case '0':
+                animacaoTecla0();
+                printf("Executando animação tecla 0\n");
+                sleep_ms(300);     // Tempo do som do buzzer
+     //           set_buzzer(0);     // Desliga o buzzer 
+                break;
+
+            default:
+      //          set_leds(0, 0, 0); // Desliga todos os LEDs
+     //           set_buzzer(0);     // Desliga o buzzer
+                break;
+    } 
+    
+    sleep_ms(100); // Estabilização  
+  
     }
     
 }
