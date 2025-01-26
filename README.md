@@ -45,8 +45,8 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
 9. **Controle e animação dos LEDs para tecla "5".** - `A definir`
 10. **Controle e animação dos LEDs para tecla "6".** - `A definir`
 11. **Controle e animação dos LEDs para tecla "7".** - `A definir`
-12. **Controle e animação dos LEDs para tecla "8".** - `A definir`
-13. **Controle e animação dos LEDs para tecla "9".** - `A definir`
+12. **Controle e animação dos LEDs para tecla "8".** - `Gabriel Santos de Lacerda`
+13. **Controle e animação dos LEDs para tecla "9".** - `Gabriel Santos de Lacerda`
 14. **Configuração e execução das funcionalidades das teclas A, B, C, D e #** - `A definir`
 15. **Implementação da tecla \* (modo gravação via software).** - `A definir`
 16. **Configuração do buzzer (opcional) e participação nos testes.** - `A definir`
