@@ -70,7 +70,6 @@ char leitura_teclado() {
     return 0; // Nenhuma tecla pressionada
 }
 
-
 int animacaoBasica(){
   
     //exemplo de uso da função npSetLED para acender um LED de cada vez
@@ -124,79 +123,142 @@ void animacaoTecla0(){
     sleep_ms(200);
 }
 
+//Codigo Alinne 
+
+// INICIO DA 1 ANIMAÇÃO
+void animacaoQuadradoPulsante(){
+    //Define as posições dos LEDs que formarão o quadrado
+    const uint led_sequence[] = {0,9,10,19,20,21,22,23,24,15,14,5,4,3,2,1,0,12};
+    const uint led_count = sizeof(led_sequence)/ sizeof(led_sequence[0]);
+
+    for(int i = 0; i<led_count; i++){
+        if(led_sequence[i]==12){
+            npSetLED(led_sequence[i],255,0,255);
+        }else{
+        npSetLED(led_sequence[i],255,0,0);
+        }
+    }
+        npWrite();
+        sleep_ms(10);
+    
+
+    for (uint i =0; i<led_count; i++){
+        npSetLED(led_sequence[i],0,0,0);
+        npWrite();
+        sleep_ms(200);
+    }
+}
+// FIM DA 1 ANIMAÇÃO
+
+
+//INICIO DA SEGUNDA ANIMAÇÃO
+
+void animacaoOnda(){
+   //Define as posiçoes dos LEDs que formarão a sequencia
+   const uint led_sequence[] = {0,9,10,19,20,21,18,11,8,1,2,7,12,17,22,23,16,13,6,3,4,5,14,15,24};
+    const uint led_count = sizeof(led_sequence) / sizeof(led_sequence[0]);
+
+    //Define a velocidade do cometa e do rastro
+    const uint tempo_rastro = 100;
+    const uint tempo_cometa = 100;
+    
+    //Define as cores
+    const uint8_t cometa_R = 255;
+    const uint8_t cometa_G = 0;
+    const uint8_t cometa_B = 0;
+    const uint8_t rastro_R = 0;
+    const uint8_t rastro_G = 0;
+    const uint8_t rastro_B = 255;
+
+    npClear();//Limpa os LEDs antes de iniciar a animação
+
+    //Faz o movimento de onda
+    for(uint i = 0; i<led_count;i++){
+        npClear();
+
+        //Acende o rastro até a posição atual
+        for(uint j=0; j<=i; j++){
+            npSetLED(led_sequence[j],rastro_R,rastro_G,rastro_B);//rastro azul
+            }
+
+            //Acende o cometa na posição atual
+            npSetLED(led_sequence[i],cometa_R,cometa_G,cometa_B);//Cometa vermelho
+
+            npWrite(); //Atualiza os LEDs
+            sleep_ms(tempo_rastro);
+    }
+            npClear();
+            npWrite();
+}
+// Animação 3- João Vitor S. Amorim
+void animacaoEspiral() {
+    const uint led_sequence[] = {
+        12, 7, 2, 1, 0, 5, 10, 15, 20, 21, 22, 23, 24, 19, 14, 9, 4, 3, 8, 13, 18, 17, 16, 11, 6
+    };
+    const uint led_count = sizeof(led_sequence) / sizeof(led_sequence[0]);
+
+    for (int i = 0; i < 2; i++) { // Animação com 2 frames
+        for (uint j = 0; j < led_count; j++) {
+            npSetLED(led_sequence[j], 0, 51, 0); // Verde com 20% de brilho (intensidade baixa)
+            npWrite();
+            sleep_ms(50);
+        }
+        npClear();
+        npWrite();
+    }
+}
+
+    
+
+// Animação 4- João Vitor S. Amorim
+void animacaoCoracaoPulsante() {
+    const uint led_sequence[] = {
+        2, 3, 6, 8, 9, 10, 14, 15, 16, 17, 18, 22
+    };
+    const uint led_count = sizeof(led_sequence) / sizeof(led_sequence[0]);
+
+    for (int i = 0; i < 1; i++) { // Animação com 1 ciclo de pulso
+        for (uint8_t intensidade = 0; intensidade <= 51; intensidade += 15) { // Intensidade máxima reduzida (20% do brilho máximo)
+            for (uint j = 0; j < led_count; j++) {
+                npSetLED(led_sequence[j], intensidade, 0, 0); // Vermelho
+            }
+            npWrite();
+            sleep_ms(50); // Menor tempo de espera
+        }
+        for (uint8_t intensidade = 51; intensidade > 0; intensidade -= 15) {
+            for (uint j = 0; j < led_count; j++) {
+                npSetLED(led_sequence[j], intensidade, 0, 0); // Vermelho
+            }
+            npWrite();
+            sleep_ms(50); // Menor tempo de espera
+        }
+    }
+}
+
 
 int main () {
     stdio_init_all();
 
-    iniciar_teclado();
     // Iicializa a matriz de LEDs neoPixel
     npInit(MATRIX_LED_PIN);
     // Limpa a matriz de LEDs
     npClear();
     
     //exemplo de uso da função npSetLED para acender um LED de cada vez
-    animacaoBasica();
+    //animacaoBasica();
     //npSetLED(0, 128, 0, 0); // A título de teste, atribui a cor vermelha ao primeiro LED com 50% de intensidade
-
+    //anim
+    
+    animacaoQuadradoPulsante(); //tecla 1
+    animacaoOnda(); //tecla 2
+    animacaoEspiral(); // tecla 3
+    animacaoCoracaoPulsante(); //tecla 4
+    
     // Escreve o buffer de LEDs no controlador
    //npWrite();
 
-    while (true) {
-        char tecla = leitura_teclado();
-        printf("Tecla pressionada: %c\n", tecla);
-               
-        // Configuração dos LEDs com base na tecla pressionada
-        switch (tecla) {
-            case 'A':
-              //  set_leds(1, 0, 0); // Botão A acende o LED vermelho
-           //     printf("Liganado o LED vermelho\n");
-               // set_buzzer(1);     // Liga o buzzer
-                sleep_ms(200);     // Tempo do som do buzzer
-                break;
-           case 'B':
-     //           set_leds(0, 0, 1); // Botão B acende o Led azul
-      //          printf("Liganado o LED azul\n");
-
-     //           set_buzzer(1);     // Liga o buzzer
-                sleep_ms(200);     // Tempo do som do buzzer
-                break;
-            case 'C':
-     //           set_leds(0, 1, 0); //Botão C acende o LED verde
-    //            printf("Liganado o LED verde\n");
-    //            set_buzzer(1);     // Liga o buzzer
-                sleep_ms(200);     // Tempo do som do buzzer
-                break;
-            case 'D':
-     //           set_leds (1,1,1); // Botão D acende todos os LEDS
-    //            printf("Liganado todos os LEDs\n");
-     //           set_buzzer(1);     // Liga o buzzer
-                sleep_ms(200);     // Tempo do som do buzzer
-                break;
-
-            case '#':
-     //           set_leds(0, 0, 0); // Desliga todos os LEDs
-     //           printf("Desligando todos os LEDs\n");
-     //           set_buzzer(1);     // Liga o buzzer
-                sleep_ms(200);     // Tempo do som do buzzer
-      //          set_buzzer(0);     // Desliga o buzzer
-                break;
-
-            case '0':
-                animacaoTecla0();
-                printf("Executando animação tecla 0\n");
-                sleep_ms(300);     // Tempo do som do buzzer
-     //           set_buzzer(0);     // Desliga o buzzer 
-                break;
-
-            default:
-      //          set_leds(0, 0, 0); // Desliga todos os LEDs
-     //           set_buzzer(0);     // Desliga o buzzer
-                break;
-    } 
-    
-    sleep_ms(100); // Estabilização
-
+    while(true){
+        sleep_ms(1000);
     }
-
-    return 0;
+    
 }
