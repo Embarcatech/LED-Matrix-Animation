@@ -7,27 +7,29 @@
 // Biblioteca gerada pelo arquivo ws2818b.pio 
 #include "ws2818b.pio.h"
 
+#include "teclado.h"
+
 // Definição da quantidade de LEDs e o pino de controle
 #define LED_COUNT 25
 
 #define MATRIX_LED_PIN 7 // PINO DA MATRIZ DE LEDS ws2818b
 #define BUZZER_PIN 21 // PINO DO BUZZER
 
-// Matrizes com nomes de colunas e linhas - GPIO - BitDogLab
-//Portas GPIO sem função específica definida
-const uint LINHAS[4] = {18, 19, 20, 4}; 
-const uint COLUNAS[4] = {16, 17, 9, 8};
+
 
 int animacaoBasica(){
   
+     npClear();
     //exemplo de uso da função npSetLED para acender um LED de cada vez
     for (uint i = 0; i < LED_COUNT; i++){
         npSetLED(i, 128, 0, 0);
         sleep_ms(200);
         npWrite();
         }
+
 }
 
+//ok implementado
 void animacaoTecla0(){
     // Acende o LED 12 por 200ms
     npSetLED(12, 255, 0, 0); // LED 12 com cor vermelha
@@ -73,6 +75,7 @@ void animacaoTecla0(){
 
 //Codigo Alinne 
 
+//ok implementado
 // INICIO DA 1 ANIMAÇÃO
 void animacaoQuadradoPulsante(){
     //Define as posições dos LEDs que formarão o quadrado
@@ -139,6 +142,8 @@ void animacaoOnda(){
             npWrite();
 }
 // Animação 3- João Vitor S. Amorim
+// FIM DA 2 ANIMAÇÃO
+
 void animacaoEspiral() {
     const uint led_sequence[] = {
         12, 7, 2, 1, 0, 5, 10, 15, 20, 21, 22, 23, 24, 19, 14, 9, 4, 3, 8, 13, 18, 17, 16, 11, 6
@@ -155,7 +160,7 @@ void animacaoEspiral() {
         npWrite();
     }
 }
-
+// FIM DA 3 ANIMAÇÃO
     
 
 // Animação 4- João Vitor S. Amorim
@@ -182,6 +187,15 @@ void animacaoCoracaoPulsante() {
         }
     }
 }
+// FIM DA 4 ANIMAÇÃO
+
+int reboot_loader()
+{
+    // Reinicia o microcontrolador
+    //reset_usb_boot
+    printf("Reiniciando o microcontrolador\n");
+}
+//codigo teste
 
 
 int main () {
@@ -191,22 +205,121 @@ int main () {
     npInit(MATRIX_LED_PIN);
     // Limpa a matriz de LEDs
     npClear();
-    
+
+    iniciar_teclado();    
+
     //exemplo de uso da função npSetLED para acender um LED de cada vez
     //animacaoBasica();
-    //npSetLED(0, 128, 0, 0); // A título de teste, atribui a cor vermelha ao primeiro LED com 50% de intensidade
-    //anim
-    
-    animacaoQuadradoPulsante(); //tecla 1
-    animacaoOnda(); //tecla 2
-    animacaoEspiral(); // tecla 3
-    animacaoCoracaoPulsante(); //tecla 4
+
     
     // Escreve o buffer de LEDs no controlador
-   //npWrite();
+//   npWrite();
 
     while(true){
-        sleep_ms(1000);
+//  sleep_ms(1000); // Tempo de teste
+
+        // Leitura do teclado
+       char tecla = leitura_teclado();
+        printf("Tecla pressionada: %c\n", tecla);
+               
+        // Configuração dos LEDs com base na tecla pressionada
+        switch (tecla) {
+            case 'A':
+              //  set_leds(1, 0, 0); // Botão A acende o LED vermelho
+                printf("Impresso o letra A\n");
+                sleep_ms(200);     
+                break;
+           case 'B':
+                printf("Impresso o letra B\n");
+                sleep_ms(200);   
+                break;
+            case 'C':
+                printf("Impresso o letra C\n");
+                sleep_ms(200);     
+                break;
+            case 'D':
+                printf("Impresso o letra D\n");
+                sleep_ms(200);     
+                break;
+
+            case '#':
+                printf("tecla # pressionada\n");
+                sleep_ms(200);     
+                break;
+
+            case '*':
+                printf("Reiniciando o microcontrolador\n");
+                reboot_loader(); // Reinicia o microcontrolador
+                break;
+            
+            case '0':
+                animacaoTecla0();
+                printf("Executando animação tecla 0\n");
+                sleep_ms(300);     
+      
+                break;
+
+            case '1':             
+                animacaoQuadradoPulsante();
+                printf("Executando animação tecla 1\n");
+                sleep_ms(300);     
+         
+                break; 
+
+            case '2':
+                animacaoOnda();
+                printf("Executando animação tecla 2\n");
+                sleep_ms(300);     // Tempo de teste
+                break;
+
+            case '3':
+                animacaoEspiral();
+                printf("Executando animação tecla 3\n");
+                sleep_ms(300);     // Tempo de teste
+                break;
+            
+            case '4':
+                animacaoCoracaoPulsante();
+                printf("Executando animação tecla 4\n");
+                sleep_ms(300);     // Tempo de teste
+                break;
+            case '5':
+                animacaoBasica();
+                printf("Executando animação tecla 5\n");
+                sleep_ms(300);     // Tempo de teste
+                break;
+            case '6':
+                animacaoBasica();
+                printf("Executando animação tecla 6\n");
+                sleep_ms(300);     // Tempo de teste
+                break;
+            case '7':
+                animacaoBasica();
+                printf("Executando animação tecla 7\n");
+                sleep_ms(300);     // Tempo de teste
+                break;
+
+            case '8':
+                animacaoBasica();
+                printf("Executando animação tecla 8\n");
+                sleep_ms(300);     // Tempo de teste
+                break;
+            
+            case '9':
+                animacaoBasica();
+                printf("Executando animação tecla 9\n");
+                sleep_ms(300);     // Tempo de teste
+                break;
+            
+
+            default:
+      //          set_leds(0, 0, 0); // Desliga todos os LEDs
+     
+                break;
+    } 
+    
+    sleep_ms(100); // Estabilização  
+  
     }
     
 }
