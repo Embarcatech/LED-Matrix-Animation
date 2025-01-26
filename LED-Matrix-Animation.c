@@ -19,6 +19,17 @@
 #define BUTTON_PIN_A 5 // PINO DO BOTÃO A
 #define BUTTON_PIN_B 6 // PINO DO BOTÃO B
 
+// Estrutura para cores GRB
+typedef struct {
+    int green;
+    int red;
+    int blue;
+} LED;
+
+// Matriz de LEDs 4x4
+#define ROWS 4
+#define COLS 4
+LED ledMatrix[ROWS][COLS];
 
 // Função para converter a posição do matriz para uma posição do vetor.
 int getIndex(int x, int y) {
@@ -28,6 +39,46 @@ int getIndex(int x, int y) {
         return 24-(y * 5 + x); // Linha par (esquerda para direita).
     } else {
         return 24-(y * 5 + (4 - x)); // Linha ímpar (direita para esquerda).
+    }
+}
+
+// Inicializa a matriz de LEDs
+void initializeMatrix(LED matrix[ROWS][COLS], int green, int red, int blue) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            matrix[i][j].green = green;
+            matrix[i][j].red = red;
+            matrix[i][j].blue = blue;
+        }
+    }
+}
+
+
+// Função para aplicar os valores da matriz no controlador NeoPixel
+void applyMatrixToNeoPixel(LED matrix[ROWS][COLS]) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            int index = getIndex(j, i);
+            npSetLED(index, matrix[i][j].green, matrix[i][j].red, matrix[i][j].blue);
+        }
+    }
+    npWrite(); // Atualiza os LEDs
+}
+
+// Animação de rotação de cores na matriz
+void animateMatrix(LED matrix[ROWS][COLS], int cycles) {
+    for (int c = 0; c < cycles; c++) {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                // Alterna as cores GRB
+                int temp = matrix[i][j].green;
+                matrix[i][j].green = matrix[i][j].red;
+                matrix[i][j].red = matrix[i][j].blue;
+                matrix[i][j].blue = temp;
+            }
+        }
+        applyMatrixToNeoPixel(matrix); // Atualiza a matriz no controlador NeoPixel
+        sleep_ms(500); // Aguarda 500ms antes de continuar
     }
 }
 
@@ -1371,11 +1422,12 @@ int main () {
 
     iniciar_teclado();    
     
-
+  // Inicializa a matriz de LEDs com cor inicial (verde)
+    initializeMatrix(ledMatrix, 0, 255, 0);
     //exemplo de uso da função npSetLED para acender um LED de cada vez
     //animacaoBasica();
  //   tocarMusicaCurta(); //teste buzzer
-    
+     animateMatrix(ledMatrix, 10); // Executa a animação
     // Escreve o buffer de LEDs no controlador
 //   npWrite();
 
