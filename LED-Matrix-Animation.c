@@ -1423,11 +1423,11 @@ int main () {
     iniciar_teclado();    
     
   // Inicializa a matriz de LEDs com cor inicial (verde)
-    initializeMatrix(ledMatrix, 0, 255, 0);
+  //  initializeMatrix(ledMatrix, 0, 255, 0);
     //exemplo de uso da função npSetLED para acender um LED de cada vez
     //animacaoBasica();
  //   tocarMusicaCurta(); //teste buzzer
-     animateMatrix(ledMatrix, 10); // Executa a animação
+ //    animateMatrix(ledMatrix, 10); // Executa a animação
     // Escreve o buffer de LEDs no controlador
 //   npWrite();
 
@@ -1511,7 +1511,8 @@ int main () {
                 sleep_ms(300);     // Tempo de teste
                 break;
             case '5':
-                animacaoBasica();
+                initializeMatrix(ledMatrix, 0, 255, 0);
+                animateMatrix(ledMatrix, 10); // Executa a anima
                 printf("Executando animação tecla 5\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
