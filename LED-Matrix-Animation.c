@@ -26,9 +26,9 @@ typedef struct {
     int blue;
 } LED;
 
-// Matriz de LEDs 4x4
-#define ROWS 4
-#define COLS 4
+// Matriz de LEDs 5x5
+#define ROWS 5
+#define COLS 5
 LED ledMatrix[ROWS][COLS];
 
 // Função para converter a posição do matriz para uma posição do vetor.
