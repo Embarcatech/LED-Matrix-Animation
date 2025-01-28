@@ -47,6 +47,7 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
 1. **Animações para teclas de 0 a 9:**  
    Cada tecla exibe uma animação diferente na matriz de LEDs.
 
+
    - **Tecla 0:** Animacao Tecla 0.
    - **Tecla 1:** Animacao Quadrado Pulsante.
    - **Tecla 2:** Animacao Onda.
@@ -64,6 +65,23 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
    - **B:** Liga todos os LEDs na cor azul (100% luminosidade).
    - **C:** Liga todos os LEDs na cor vermelha (80% luminosidade).
    - **D:** Liga todos os LEDs na cor verde (50% luminosidade).
+      - **Tecla 0:** Animacao Tecla 0.
+      - **Tecla 1:** Animacao Quadrado Pulsante.
+      - **Tecla 2:** Animacao Onda.
+      - **Tecla 3:** Animacao Espiral.
+      - **Tecla 4:** Animacao Coracao Pulsante.
+      - **Tecla 5:** Initialize Matrix.
+      - **Tecla 6:** Animacao Basica.
+      - **Tecla 7:** animacao_tecla_7
+      - **Tecla 8:** Animacao_tecla_8
+      - **Tecla 9:** Animacao_tecla_9
+
+2. **Funções específicas para teclas especiais:**  
+   - **A:** Desliga todos os LEDs.  
+   - **B:** Liga todos os LEDs na cor azul (100% luminosidade).  
+   - **C:** Liga todos os LEDs na cor vermelha (80% luminosidade).  
+   - **D:** Liga todos os LEDs na cor verde (50% luminosidade).  
+
    - **#:** Liga todos os LEDs na cor branca (20% luminosidade).
 
 3. **Modo de gravação via tecla \*:**
