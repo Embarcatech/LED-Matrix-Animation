@@ -13,6 +13,10 @@
 //Codigo Teclado 4x4 
 #include "teclado.h"
 
+//Codigo Arthut Alencar
+// Codigo pwm buzzer
+#include "libs/local_pwm.c"
+
 //Animações Hugo S. Dias
 #include "libs/animacao_hugo.c"
 
@@ -25,98 +29,14 @@
 //Alinne
 #include "libs/animacao_aline.c"
 
+//João Vitor S. Amorim
+#include "libs/animacao_joao.c"
+
+//Codigo Arthur Alencar
+#include "libs/animacao_arthur.c"
+
 // Definições gerais do projeto
 #include "libs/definicoes.h"
-
-
-
-// Funcao auxiliar para utilização do buzzer de forma modular
-void set_pwm_pin(uint pin, uint freq, uint duty_c) {
-		gpio_set_function(pin, GPIO_FUNC_PWM);
-		uint slice_num = pwm_gpio_to_slice_num(pin);
-    		pwm_config config = pwm_get_default_config();
-		float div = (float)clock_get_hz(clk_sys) / (freq * 10000);
-		pwm_config_set_clkdiv(&config, div);
-		pwm_config_set_wrap(&config, 10000); 
-		pwm_init(slice_num, &config, true); 
-		pwm_set_gpio_level(pin, duty_c); 
-	};
-
-
-// Musica simples buzzer - Arthur A L Trindade
-void tocarMusicaCurta() {
-    const uint16_t frequencias[] = {392, 392, 349, 330, 392, 392, 349, 330, 392, 440, 392,
-                                    349, 330, 294, 294, 330, 349, 294,330, 349, 294, 330,
-                                    349, 392, 440, 392, 349, 330, 294, 262}; // Notas: SOL, FA, MI, etc.
-    const uint16_t duty[] =        {300, 300, 400, 400, 300, 300, 400, 400, 300, 300, 300,
-                                    300, 300, 400, 300, 300, 300, 300, 300, 300, 300, 300,
-                                    300, 300, 300, 300, 300, 300, 400, 600};     // Ciclo de trabalho em ms
-    const uint16_t duracoes[] =    {350, 350, 300, 300, 350, 300, 300, 300, 300, 350, 300,
-                                    300, 300, 350, 300, 300, 300, 300, 300, 300, 300, 300,
-                                    300, 300, 300, 300, 350, 350, 350, 300};     // Durações em ms
-    
-    const uint16_t notas = sizeof(frequencias) / sizeof(frequencias[0]);    // Durações das notas em ms
-    uint slice_num = pwm_gpio_to_slice_num(BUZZER_PIN);
-
-    for (uint16_t i = 0; i < notas; i++) {
-        set_pwm_pin(BUZZER_PIN, frequencias[i], duty[i]);
-        sleep_ms(duracoes[i]);
-        pwm_set_enabled(slice_num, false);
-        sleep_ms(50); // Pausa entre as notas
-    }
-
-    pwm_set_enabled(slice_num, false);
-
-}
-
-
-// Animação 3- João Vitor S. Amorim
-// FIM DA 2 ANIMAÇÃO
-
-void animacaoEspiral() {
-    const uint led_sequence[] = {
-        12, 7, 2, 1, 0, 5, 10, 15, 20, 21, 22, 23, 24, 19, 14, 9, 4, 3, 8, 13, 18, 17, 16, 11, 6
-    };
-    const uint led_count = sizeof(led_sequence) / sizeof(led_sequence[0]);
-
-    for (int i = 0; i < 2; i++) { // Animação com 2 frames
-        for (uint j = 0; j < led_count; j++) {
-            npSetLED(led_sequence[j], 0, 51, 0); // Verde com 20% de brilho (intensidade baixa)
-            npWrite();
-            sleep_ms(50);
-        }
-        npClear();
-        npWrite();
-    }
-}
-// FIM DA 3 ANIMAÇÃO
-    
-
-// Animação 4- João Vitor S. Amorim
-void animacaoCoracaoPulsante() {
-    const uint led_sequence[] = {
-        2, 3, 6, 8, 9, 10, 14, 15, 16, 17, 18, 22
-    };
-    const uint led_count = sizeof(led_sequence) / sizeof(led_sequence[0]);
-
-    for (int i = 0; i < 1; i++) { // Animação com 1 ciclo de pulso
-        for (uint8_t intensidade = 0; intensidade <= 51; intensidade += 15) { // Intensidade máxima reduzida (20% do brilho máximo)
-            for (uint j = 0; j < led_count; j++) {
-                npSetLED(led_sequence[j], intensidade, 0, 0); // Vermelho
-            }
-            npWrite();
-            sleep_ms(50); // Menor tempo de espera
-        }
-        for (uint8_t intensidade = 51; intensidade > 0; intensidade -= 15) {
-            for (uint j = 0; j < led_count; j++) {
-                npSetLED(led_sequence[j], intensidade, 0, 0); // Vermelho
-            }
-            npWrite();
-            sleep_ms(50); // Menor tempo de espera
-        }
-    }
-}
-// FIM DA 4 ANIMAÇÃO
 
 
 int reboot_loader()
@@ -126,45 +46,6 @@ int reboot_loader()
     reset_usb_boot(0, 0);
 }
 //codigo teste
-
-
-//Animação para a tecla A - Arthur Alencar
-void animacaoTeclaA() {
-    const uint leds[][5] = {
-        {0, 1, 2, 3, 4},
-        {5, 6, 7, 8, 9},
-        {10, 11, 12, 13, 14},
-        {15, 16, 17, 18, 19},
-        {20, 21, 22, 23, 24}
-    };
-
-    const uint rows = sizeof(leds) / sizeof(leds[0]);    // Número de fileiras
-    const uint cols = sizeof(leds[0]) / sizeof(leds[0][0]); // Número de colunas
-
-    // Percorre cada fileira
-    for (uint r = 0; r < rows; r++) {
-        for (uint color = 0; color < 3; color++) {
-            for (uint c = 0; c < cols; c++) {
-                uint led_id = leds[r][c]; // LED atual na fileira
-                uint8_t red = (color == 0) ? 50 : 0;  // Intensidade do vermelho
-                uint8_t green = (color == 1) ? 50 : 0; // Intensidade do verde
-                uint8_t blue = (color == 2) ? 50 : 0;  // Intensidade do azul
-                sleep_ms(50);
-                npSetLED(led_id, red, green, blue);
-            }
-
-            npWrite();
-            sleep_ms(100);
-        }
-    }
-
-    for (uint r = 0; r < rows; r++) {
-        for (uint c = 0; c < cols; c++) {
-            npSetLED(leds[r][c], 0, 0, 0);
-        }
-    }
-    npWrite();
-}
 
 
 int main () {
@@ -186,15 +67,6 @@ int main () {
 
     iniciar_teclado();    
     
-  // Inicializa a matriz de LEDs com cor inicial (verde)
-  //  initializeMatrix(ledMatrix, 0, 255, 0);
-    //exemplo de uso da função npSetLED para acender um LED de cada vez
-    //animacaoBasica();
- //   tocarMusicaCurta(); //teste buzzer
- //    animateMatrix(ledMatrix, 10); // Executa a animação
-    // Escreve o buffer de LEDs no controlador
-//   npWrite();
-
 
 
     while(true){
