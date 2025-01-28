@@ -114,26 +114,30 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
    4. Compile Project: Compilação dos binários.
 
    5. Run Project [USB]: Compila e copia o firmware para a placa automaticamente.
----
+
+
 ## **Funcionamento do Código**
-   1. ***Inicialização***
+
+   1. **Inicialização**
    - Configura os pinos das linhas do teclado como saída.
    - Configura os pinos das colunas como entrada com resistores de pull-up.
 
-   2. ***Leitura do Teclado***
+   2. **Leitura do Teclado**
    - Verifica as colunas ativas para identificar a tecla pressionada.
 
-   3.***Controle de LEDs***
+   3.**Controle de LEDs**
    - Define o estado de cada LED ou a animação com base na tecla pressionada.
 
-   4.***Loop Principal*** 
+   4.**Loop Principal** 
     -Monitora continuamente as teclas pressionadas. 
     -Atualiza os LEDs e imprime a tecla pressionada na saída padrão.
+
+
 ## **Como Usar**
 
    1. Conecte os componentes conforme o diagrama de conexões.  
    2. Carregue o firmware no Raspberry Pi Pico W.  
    3. Interaja com o teclado para observar as animações e funcionalidades implementadas.  
 
----
+
 
