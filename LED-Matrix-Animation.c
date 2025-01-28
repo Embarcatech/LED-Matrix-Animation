@@ -106,28 +106,34 @@ int main() {
             // Adiciona o switch case para tratar as opções 'A', 'B' e 'C'
             switch (key) {
             case 'A':
+                // Jackson
                 printf("Ação para a tecla A\n");
-                animacaoBasica();
+                acaoTeclaA();
                 sleep_ms(200);     
                 break;
            case 'B':
+                // Jackson
                 printf("Ação para a tecla B\n");
-                animacaoBasica();
+                acaoTeclaB();
                 sleep_ms(200);   
                 break;
             case 'C':
+                // Jackson
                 printf("Ação para a tecla C\n");
-                animacaoBasica();
+                acaoTeclaC();
                 sleep_ms(200);     
                 break;
             case 'D':
+                // Jackson
                 printf("Ação para a tecla D\n");
-                animacaoBasica();
+                acaoTeclaD();
                 sleep_ms(200);     
                 break;
 
            case '#':
-                printf("tecla # pressionada\n");
+                // Jackson
+                printf("Ação para a tecla #\n");
+                acaoTeclaHashtag();
                 sleep_ms(200);     
                 break;
 

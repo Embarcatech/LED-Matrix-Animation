@@ -61,5 +61,56 @@ void animacaoTecla0(){
     configurarLED(posicaoCentral, 0, 0, 255, tempoDeEspera);
 
 }
-
 // FIM DA ANIMAÇÃO 0
+
+// INICIO DA AÇÃO DA TECLA A
+
+// Todos os leds devem ser apagados
+void acaoTeclaA(){
+    npClear(); // Limpa o buffer de LEDs
+    npWrite(); // Escreve o buffer de LEDs no controlador
+}
+
+// FIM DA AÇÃO DA TECLA A
+
+// INICIO DA AÇÃO DA TECLA B
+// Aciona todos os leds em azul na intensidade máxima
+void acaoTeclaB(){
+    for(int i = 0; i < LED_COUNT; i++){
+        npSetLED(i, 0, 0, 255);
+    }
+    npWrite();
+}
+// FIM DA AÇÃO DA TECLA B
+
+
+// INICIO DA AÇÃO DA TECLA C
+// Aciona todos os leds em vermelho com intensidade de 80%
+void acaoTeclaC(){
+    for(int i = 0; i < LED_COUNT; i++){
+        npSetLED(i, 204, 0, 0);
+    }
+    npWrite();
+}
+// FIM DA AÇÃO DA TECLA C
+
+// INICIO DA AÇÃO DA TECLA D
+// Aciona todos os leds em verde com intensidade de 50%
+void acaoTeclaD(){
+    for (int i = 0; i < LED_COUNT; i++)
+    {
+        npSetLED(i, 0, 128, 0);
+    }
+    npWrite();
+}
+// FIM DA AÇÃO DA TECLA D
+
+// INICIO DA AÇÃO DA TECLA #
+// Aciona todos os leds em branco com intensidade de 20%
+void acaoTeclaHashtag(){
+    for(int i = 0; i < LED_COUNT; i++){
+        npSetLED(i, 51, 51, 51);
+    }
+    npWrite();
+}
+// FIM DA AÇÃO DA TECLA #
