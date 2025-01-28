@@ -63,3 +63,12 @@ void animacaoTecla0(){
 }
 
 // FIM DA ANIMAÇÃO 0
+
+
+// INICIO DA AÇÃO DA TECLA A
+
+// Todos os leds devem ser apagados
+void acaoTeclaA(){
+    npClear(); // Limpa o buffer de LEDs
+    npWrite(); // Escreve o buffer de LEDs no controlador
+}

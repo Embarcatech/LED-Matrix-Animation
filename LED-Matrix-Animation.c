@@ -107,7 +107,7 @@ int main() {
             switch (key) {
             case 'A':
                 printf("Ação para a tecla A\n");
-                animacaoBasica();
+                acaoTeclaA();
                 sleep_ms(200);     
                 break;
            case 'B':
