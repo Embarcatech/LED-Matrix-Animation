@@ -61,9 +61,7 @@ void animacaoTecla0(){
     configurarLED(posicaoCentral, 0, 0, 255, tempoDeEspera);
 
 }
-
 // FIM DA ANIMAÇÃO 0
-
 
 // INICIO DA AÇÃO DA TECLA A
 
@@ -72,3 +70,15 @@ void acaoTeclaA(){
     npClear(); // Limpa o buffer de LEDs
     npWrite(); // Escreve o buffer de LEDs no controlador
 }
+
+// FIM DA AÇÃO DA TECLA A
+
+// INICIO DA AÇÃO DA TECLA B
+// Aciona todos os leds em azul na intensidade máxima
+void acaoTeclaB(){
+    for(int i = 0; i < LED_COUNT; i++){
+        npSetLED(i, 0, 0, 255);
+    }
+    npWrite();
+}
+// FIM DA AÇÃO DA TECLA B
