@@ -48,9 +48,9 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
       - **Tecla 4:** Animacao Coracao Pulsante.
       - **Tecla 5:** Initialize Matrix.
       - **Tecla 6:** Animacao Basica.
-      - **Tecla 7:** Animacao Basica.
-      - **Tecla 8:** Animacao_tecla_8.
-      - **Tecla 9:** Animacao_tecla_9.
+      - **Tecla 7:** animacao_tecla_7
+      - **Tecla 8:** Animacao_tecla_8
+      - **Tecla 9:** Animacao_tecla_9
 
 2. **Funções específicas para teclas especiais:**  
    - **A:** Desliga todos os LEDs.  
