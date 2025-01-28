@@ -35,6 +35,9 @@
 //Codigo Arthur Alencar
 #include "libs/animacao_arthur.c"
 
+//Codigo Sergio
+#include "libs/animacao_sergio.c"
+
 // Definições gerais do projeto
 #include "libs/definicoes.h"
 
@@ -79,7 +82,7 @@ int main () {
 
         if (!gpio_get(BUTTON_PIN_B)) { // Botão pressionado (nível baixo)
             printf("Botão pressionado! Executando ação...\n");
-            animacaoBasica();
+            tocarMusicaCurta();
         }
         // Leitura do teclado
        char tecla = leitura_teclado();
@@ -148,7 +151,7 @@ int main () {
                 break;
             case '5':
                 initializeMatrix(ledMatrix, 0, 255, 0);
-                animateMatrix(ledMatrix, 10); // Executa a anima
+                animateMatrix(ledMatrix, 10); // Executa a animação
                 printf("Executando animação tecla 5\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
@@ -158,7 +161,7 @@ int main () {
                 sleep_ms(300);     // Tempo de teste
                 break;
             case '7':
-                animacaoBasica();
+                animacao_tecla_7();
                 printf("Executando animação tecla 7\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
