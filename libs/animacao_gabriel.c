@@ -38,7 +38,7 @@ void animacao_tecla_8(){
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
     int matriz_2[5][5][3] = {
@@ -56,7 +56,7 @@ void animacao_tecla_8(){
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
     int matriz_3[5][5][3] = {
@@ -74,7 +74,7 @@ void animacao_tecla_8(){
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
     int matriz_4[5][5][3] = {
@@ -93,7 +93,7 @@ void animacao_tecla_8(){
         }    
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
     int matriz_5[5][5][3] = {
@@ -112,7 +112,7 @@ void animacao_tecla_8(){
         }  
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
     int matriz_6[5][5][3] = {
@@ -131,7 +131,7 @@ void animacao_tecla_8(){
         }  
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
     int matriz_7[5][5][3] = {
@@ -150,7 +150,7 @@ void animacao_tecla_8(){
         }  
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
     int matriz_8[5][5][3] =  {
@@ -169,7 +169,7 @@ void animacao_tecla_8(){
         }  
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
     int matriz_9[5][5][3] = {
@@ -188,7 +188,7 @@ void animacao_tecla_8(){
         }  
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
     int matriz_10[5][5][3] = {
@@ -207,7 +207,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -227,7 +227,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
     
@@ -248,7 +248,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -268,7 +268,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -288,7 +288,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -308,7 +308,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -328,7 +328,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -348,7 +348,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -368,7 +368,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -388,7 +388,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -408,7 +408,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -428,7 +428,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -448,7 +448,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -468,7 +468,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -488,7 +488,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -508,7 +508,7 @@ void animacao_tecla_8(){
         } 
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
         
 
@@ -534,7 +534,7 @@ int matriz_31[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -558,7 +558,7 @@ int matriz_32[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -582,7 +582,7 @@ int matriz_33[5][5][3] =  {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -605,7 +605,7 @@ int matriz_34[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -628,7 +628,7 @@ int matriz_35[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -651,7 +651,7 @@ int matriz_36[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -674,7 +674,7 @@ int matriz_37[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -697,7 +697,7 @@ int matriz_38[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -720,7 +720,7 @@ int matriz_39[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -743,7 +743,7 @@ int matriz_40[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -766,7 +766,7 @@ int matriz_41[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -789,7 +789,7 @@ int matriz_42[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -812,7 +812,7 @@ int matriz_43[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -835,7 +835,7 @@ int matriz_44[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -858,7 +858,7 @@ int matriz_45[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -881,7 +881,7 @@ int matriz_46[5][5][3] =  {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -904,7 +904,7 @@ int matriz_47[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -927,7 +927,7 @@ int matriz_48[5][5][3] =  {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -950,7 +950,7 @@ int matriz_49[5][5][3] =  {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -973,7 +973,7 @@ int matriz_50[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -997,7 +997,7 @@ int matriz_51[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -1020,7 +1020,7 @@ int matriz_52[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -1043,7 +1043,7 @@ int matriz_53[5][5][3] = {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -1066,7 +1066,7 @@ int matriz_54[5][5][3] =  {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -1089,7 +1089,7 @@ int matriz_55[5][5][3] =  {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
 
@@ -1112,7 +1112,7 @@ int matriz_56[5][5][3] =  {
         }
 
     npWrite();
-    sleep_ms(2000);
+    sleep_ms(500);
     npClear();
 
     
