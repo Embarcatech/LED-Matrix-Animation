@@ -4,6 +4,7 @@
 #include "hardware/clocks.h"
 #include "pio_config.h"
 #include "hardware/pwm.h"
+#include "pico/bootrom.h"
 
 
 // Biblioteca gerada pelo arquivo ws2818b.pio 
@@ -298,8 +299,8 @@ void animacaoCoracaoPulsante() {
 int reboot_loader()
 {
     // Reinicia o microcontrolador
-    //reset_usb_boot
     printf("Reiniciando o microcontrolador\n");
+    reset_usb_boot(0, 0);
 }
 //codigo teste
 
