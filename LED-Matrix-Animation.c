@@ -10,15 +10,15 @@
 // Biblioteca gerada pelo arquivo ws2818b.pio 
 #include "ws2818b.pio.h"
 
+//Codigo Teclado 4x4 
 #include "teclado.h"
 
-// Definição da quantidade de LEDs e o pino de controle
-#define LED_COUNT 25
+//Animações Hugo S. Dias
+#include "libs/animacao_hugo.c"
 
-#define MATRIX_LED_PIN 7 // PINO DA MATRIZ DE LEDS ws2818b
-#define BUZZER_PIN 21 // PINO DO BUZZER
-#define BUTTON_PIN_A 5 // PINO DO BOTÃO A
-#define BUTTON_PIN_B 6 // PINO DO BOTÃO B
+// Definições gerais do projeto
+#include "libs/definicoes.h"
+
 
 // Estrutura para cores GRB
 typedef struct {
@@ -83,17 +83,6 @@ void animateMatrix(LED matrix[ROWS][COLS], int cycles) {
     }
 }
 
-int animacaoBasica(){
-  
-     npClear();
-    //exemplo de uso da função npSetLED para acender um LED de cada vez
-    for (uint i = 0; i < LED_COUNT; i++){
-        npSetLED(i, 128, 0, 0);
-        sleep_ms(200);
-        npWrite();
-        }
-
-}
 
 // Funcao auxiliar para utilização do buzzer de forma modular
 void set_pwm_pin(uint pin, uint freq, uint duty_c) {
