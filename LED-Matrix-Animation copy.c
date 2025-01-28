@@ -51,17 +51,13 @@ int reboot_loader()
     printf("Reiniciando o microcontrolador\n");
     reset_usb_boot(0, 0);
 }
+//codigo teste
 
 
-
-
-
-//implementação do teclado 
-int main() {
-    // Inicialização do sistema (UART para debug e outros periféricos)
+int main () {
     stdio_init_all();
 
-    // Inicializa a matriz de LEDs neoPixel
+    // Iicializa a matriz de LEDs neoPixel
     npInit(MATRIX_LED_PIN);
     // Limpa a matriz de LEDs
     npClear();
@@ -74,57 +70,49 @@ int main() {
     gpio_set_dir(BUTTON_PIN_B, GPIO_IN);
     gpio_pull_up(BUTTON_PIN_B);
 
-    // Criação do objeto MatrixKeypad
-    MatrixKeypad_t *keypad = MatrixKeypad_create((char *)keyMap, rowPins, colPins, ROWSPIN, COLSPIN);
-    if (keypad == NULL) {
-        printf("Erro: Falha ao inicializar o teclado matricial!\n");
-        return 1;
-    }
 
-    printf("Teclado matricial iniciado. Pressione uma tecla:\n");
+    iniciar_teclado();    
+    
 
-    while (true) {
-        // Verifica se os botões foram pressionados
+
+    while(true){
+//  sleep_ms(1000); // Tempo de teste
+ // Verifica se o botão foi pressionado
         if (!gpio_get(BUTTON_PIN_A)) { // Botão pressionado (nível baixo)
-            printf("Botão A pressionado! Executando ação...\n");
+            printf("Botão pressionado! Executando ação...\n");
             tocarMusicaCurta();
         }
 
         if (!gpio_get(BUTTON_PIN_B)) { // Botão pressionado (nível baixo)
-            printf("Botão B pressionado! Executando ação...\n");
+            printf("Botão pressionado! Executando ação...\n");
             tocarMusicaCurta();
         }
-
-        // Escaneia o teclado
-        MatrixKeypad_scan(keypad);
-
-        // Verifica se uma tecla foi pressionada
-        if (MatrixKeypad_hasKey(keypad)) {
-            char key = MatrixKeypad_getKey(keypad);  // Obtém a tecla pressionada
-            printf("Tecla pressionada: %c\n", key);
-
-            // Adiciona o switch case para tratar as opções 'A', 'B' e 'C'
-            switch (key) {
-                 case 'A':
-                printf("Ação para a tecla A\n");
+        // Leitura do teclado
+       char tecla = leitura_teclado();
+        printf("Tecla pressionada: %c\n", tecla);
+               
+        // Configuração dos LEDs com base na tecla pressionada
+        switch (tecla) {
+            case 'A':
+                printf("Impresso o letra A\n");
                 animacaoTeclaA();
                 sleep_ms(200);     
                 break;
            case 'B':
-                printf("Ação para a tecla B\n");
+                printf("Impresso o letra B\n");
                 sleep_ms(200);   
                 break;
             case 'C':
-                printf("Ação para a tecla C\n");
+                printf("Impresso o letra C\n");
                 sleep_ms(200);     
                 break;
             case 'D':
-                printf("Ação para a tecla D\n");
+                printf("Impresso o letra D\n");
                 sleep_ms(200);     
                 break;
 
             case '#':
-                printf("Ação para a tecla_#\n");
+                printf("tecla # pressionada\n");
                 sleep_ms(200);     
                 break;
 
@@ -134,13 +122,15 @@ int main() {
                 break;
             
             case '0':
+            //jackson
                 animacaoTecla0();
                 printf("Executando animação tecla 0\n");
                 sleep_ms(300);     
       
                 break;
 
-            case '1':             
+            case '1':
+            //alinne             
                 animacaoQuadradoPulsante();
                 printf("Executando animação tecla 1\n");
                 sleep_ms(300);     
@@ -148,60 +138,68 @@ int main() {
                 break; 
 
             case '2':
+            //alinne
                 animacaoOnda();
                 printf("Executando animação tecla 2\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
 
             case '3':
+            //joao vitor
                 animacaoEspiral();
                 printf("Executando animação tecla 3\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             
             case '4':
+            //joao vitor
                 animacaoCoracaoPulsante();
                 printf("Executando animação tecla 4\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             case '5':
+            //hugo
                 initializeMatrix(ledMatrix, 0, 255, 0);
-                animateMatrix(ledMatrix, 10); // Executa a anima
+                animateMatrix(ledMatrix, 15); // Executa a animação
                 printf("Executando animação tecla 5\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             case '6':
+            //funçao de teste
                 animacaoBasica();
                 printf("Executando animação tecla 6\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             case '7':
-                animacaoBasica();
+            //sergio 
+                animacao_tecla_7();
                 printf("Executando animação tecla 7\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
 
             case '8':
+            //gabriel
                  animacao_tecla_8();
                 printf("Executando animação tecla 8\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             
             case '9':
+            //gabriel
                  animacao_tecla_9();
                 printf("Executando animação tecla 9\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
-                default:
-                    printf("Tecla '%c' não possui ação configurada.\n", key);
-                    break;
-            }
-        }
 
-        // Delay para evitar leituras repetidas
-        sleep_ms(100);
+
+            default:
+      //          set_leds(0, 0, 0); // Desliga todos os LEDs
+     
+                break;
+    } 
+    
+    sleep_ms(100); // Estabilização  
+  
     }
-
-    return 0;
+    
 }
-

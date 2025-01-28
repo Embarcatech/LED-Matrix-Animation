@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(LED-Matrix-Animation LED-Matrix-Animation.c )
+add_executable(LED-Matrix-Animation LED-Matrix-Animation.c MatrixKeypad.c)
 
 pico_set_program_name(LED-Matrix-Animation "LED-Matrix-Animation")
 pico_set_program_version(LED-Matrix-Animation "0.1")
