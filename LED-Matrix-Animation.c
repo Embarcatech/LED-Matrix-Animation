@@ -118,8 +118,9 @@ int main() {
                 sleep_ms(200);   
                 break;
             case 'C':
+                // Jackson
                 printf("Ação para a tecla C\n");
-                animacaoBasica();
+                acaoTeclaC();
                 sleep_ms(200);     
                 break;
             case 'D':

@@ -82,3 +82,14 @@ void acaoTeclaB(){
     npWrite();
 }
 // FIM DA AÇÃO DA TECLA B
+
+
+// INICIO DA AÇÃO DA TECLA C
+// Aciona todos os leds em vermelho com intensidade de 80%
+void acaoTeclaC(){
+    for(int i = 0; i < LED_COUNT; i++){
+        npSetLED(i, 204, 0, 0);
+    }
+    npWrite();
+}
+// FIM DA AÇÃO DA TECLA C
