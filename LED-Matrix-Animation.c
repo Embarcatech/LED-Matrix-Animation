@@ -105,26 +105,29 @@ int main() {
 
             // Adiciona o switch case para tratar as opções 'A', 'B' e 'C'
             switch (key) {
-                 case 'A':
+            case 'A':
                 printf("Ação para a tecla A\n");
-                animacaoTeclaA();
+                animacaoBasica();
                 sleep_ms(200);     
                 break;
            case 'B':
                 printf("Ação para a tecla B\n");
+                animacaoBasica();
                 sleep_ms(200);   
                 break;
             case 'C':
                 printf("Ação para a tecla C\n");
+                animacaoBasica();
                 sleep_ms(200);     
                 break;
             case 'D':
                 printf("Ação para a tecla D\n");
+                animacaoBasica();
                 sleep_ms(200);     
                 break;
 
-            case '#':
-                printf("Ação para a tecla_#\n");
+           case '#':
+                printf("tecla # pressionada\n");
                 sleep_ms(200);     
                 break;
 
@@ -134,13 +137,15 @@ int main() {
                 break;
             
             case '0':
+            //jackson
                 animacaoTecla0();
                 printf("Executando animação tecla 0\n");
                 sleep_ms(300);     
       
                 break;
 
-            case '1':             
+            case '1':
+            //alinne             
                 animacaoQuadradoPulsante();
                 printf("Executando animação tecla 1\n");
                 sleep_ms(300);     
@@ -148,46 +153,54 @@ int main() {
                 break; 
 
             case '2':
+            //alinne
                 animacaoOnda();
                 printf("Executando animação tecla 2\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
 
             case '3':
+            //joao vitor
                 animacaoEspiral();
                 printf("Executando animação tecla 3\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             
             case '4':
+            //joao vitor
                 animacaoCoracaoPulsante();
                 printf("Executando animação tecla 4\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             case '5':
+            //hugo
                 initializeMatrix(ledMatrix, 0, 255, 0);
-                animateMatrix(ledMatrix, 10); // Executa a anima
+                animateMatrix(ledMatrix, 15); // Executa a animação
                 printf("Executando animação tecla 5\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             case '6':
-                animacaoBasica();
+            //arthur
+                animacaoTeclaA();
                 printf("Executando animação tecla 6\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             case '7':
-                animacaoBasica();
+            //sergio 
+                animacao_tecla_7();
                 printf("Executando animação tecla 7\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
 
             case '8':
+            //gabriel
                  animacao_tecla_8();
                 printf("Executando animação tecla 8\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             
             case '9':
+            //gabriel
                  animacao_tecla_9();
                 printf("Executando animação tecla 9\n");
                 sleep_ms(300);     // Tempo de teste
