@@ -14,7 +14,7 @@
 #include "MatrixKeypad.h"
 
 //Codigo Teclado 4x4 
-//#include "teclado.h"
+#include "teclado.h"
 
 //Codigo Arthut Alencar
 // Codigo pwm buzzer
@@ -51,62 +51,17 @@ int reboot_loader()
     printf("Reiniciando o microcontrolador\n");
     reset_usb_boot(0, 0);
 }
-//codigo teste
-// Configuração do teclado matricial
-#define ROWSPIN 4
-#define COLSPIN 4
-
-// Definição dos pinos GPIO conectados às linhas e colunas do teclado
-uint8_t rowPins[ROWSPIN] = {18, 19, 20, 4};  // GPIOs para as linhas
-uint8_t colPins[COLSPIN] ={16, 17, 9, 8};  // GPIOs para as colunas
-
-// Mapeamento das teclas (4x4)
-char keyMap[ROWSPIN][COLSPIN] = {
-    {'1', '2', '3', 'A'},
-    {'4', '5', '6', 'B'},
-    {'7', '8', '9', 'C'},
-    {'*', '0', '#', 'D'}
-};
 
 
 
 
+
+//implementação do teclado 
 int main() {
     // Inicialização do sistema (UART para debug e outros periféricos)
     stdio_init_all();
 
-    // Criação do objeto MatrixKeypad
-    MatrixKeypad_t *keypad = MatrixKeypad_create((char *)keyMap, rowPins, colPins, ROWSPIN, COLSPIN);
-    if (keypad == NULL) {
-        printf("Erro: Falha ao inicializar o teclado matricial!\n");
-        return 1;
-    }
-
-    printf("Teclado matricial iniciado. Pressione uma tecla:\n");
-
-    while (true) {
-        // Escaneia o teclado
-        MatrixKeypad_scan(keypad);
-
-        // Verifica se uma tecla foi pressionada
-        if (MatrixKeypad_hasKey(keypad)) {
-            char key = MatrixKeypad_getKey(keypad);  // Obtém a tecla pressionada
-            printf("Tecla pressionada: %c\n", key);
-        }
-
-        // Delay para evitar leituras repetidas
-        sleep_ms(100);
-    }
-
-    return 0;
-}
-
-
-/*
-int main () {
-    stdio_init_all();
-
-    // Iicializa a matriz de LEDs neoPixel
+    // Inicializa a matriz de LEDs neoPixel
     npInit(MATRIX_LED_PIN);
     // Limpa a matriz de LEDs
     npClear();
@@ -119,49 +74,57 @@ int main () {
     gpio_set_dir(BUTTON_PIN_B, GPIO_IN);
     gpio_pull_up(BUTTON_PIN_B);
 
+    // Criação do objeto MatrixKeypad
+    MatrixKeypad_t *keypad = MatrixKeypad_create((char *)keyMap, rowPins, colPins, ROWSPIN, COLSPIN);
+    if (keypad == NULL) {
+        printf("Erro: Falha ao inicializar o teclado matricial!\n");
+        return 1;
+    }
 
-    iniciar_teclado();    
-    
+    printf("Teclado matricial iniciado. Pressione uma tecla:\n");
 
-
-    while(true){
-//  sleep_ms(1000); // Tempo de teste
- // Verifica se o botão foi pressionado
+    while (true) {
+        // Verifica se os botões foram pressionados
         if (!gpio_get(BUTTON_PIN_A)) { // Botão pressionado (nível baixo)
-            printf("Botão pressionado! Executando ação...\n");
+            printf("Botão A pressionado! Executando ação...\n");
             tocarMusicaCurta();
         }
 
         if (!gpio_get(BUTTON_PIN_B)) { // Botão pressionado (nível baixo)
-            printf("Botão pressionado! Executando ação...\n");
+            printf("Botão B pressionado! Executando ação...\n");
             tocarMusicaCurta();
         }
-        // Leitura do teclado
-       char tecla = leitura_teclado();
-        printf("Tecla pressionada: %c\n", tecla);
-               
-        // Configuração dos LEDs com base na tecla pressionada
-        switch (tecla) {
-            case 'A':
-                printf("Impresso o letra A\n");
+
+        // Escaneia o teclado
+        MatrixKeypad_scan(keypad);
+
+        // Verifica se uma tecla foi pressionada
+        if (MatrixKeypad_hasKey(keypad)) {
+            char key = MatrixKeypad_getKey(keypad);  // Obtém a tecla pressionada
+            printf("Tecla pressionada: %c\n", key);
+
+            // Adiciona o switch case para tratar as opções 'A', 'B' e 'C'
+            switch (key) {
+                 case 'A':
+                printf("Ação para a tecla A\n");
                 animacaoTeclaA();
                 sleep_ms(200);     
                 break;
            case 'B':
-                printf("Impresso o letra B\n");
+                printf("Ação para a tecla B\n");
                 sleep_ms(200);   
                 break;
             case 'C':
-                printf("Impresso o letra C\n");
+                printf("Ação para a tecla C\n");
                 sleep_ms(200);     
                 break;
             case 'D':
-                printf("Impresso o letra D\n");
+                printf("Ação para a tecla D\n");
                 sleep_ms(200);     
                 break;
 
             case '#':
-                printf("tecla # pressionada\n");
+                printf("Ação para a tecla_#\n");
                 sleep_ms(200);     
                 break;
 
@@ -171,15 +134,13 @@ int main () {
                 break;
             
             case '0':
-            //jackson
                 animacaoTecla0();
                 printf("Executando animação tecla 0\n");
                 sleep_ms(300);     
       
                 break;
 
-            case '1':
-            //alinne             
+            case '1':             
                 animacaoQuadradoPulsante();
                 printf("Executando animação tecla 1\n");
                 sleep_ms(300);     
@@ -187,70 +148,60 @@ int main () {
                 break; 
 
             case '2':
-            //alinne
                 animacaoOnda();
                 printf("Executando animação tecla 2\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
 
             case '3':
-            //joao vitor
                 animacaoEspiral();
                 printf("Executando animação tecla 3\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             
             case '4':
-            //joao vitor
                 animacaoCoracaoPulsante();
                 printf("Executando animação tecla 4\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             case '5':
-            //hugo
                 initializeMatrix(ledMatrix, 0, 255, 0);
-                animateMatrix(ledMatrix, 15); // Executa a animação
+                animateMatrix(ledMatrix, 10); // Executa a anima
                 printf("Executando animação tecla 5\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             case '6':
-            //funçao de teste
                 animacaoBasica();
                 printf("Executando animação tecla 6\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             case '7':
-            //sergio 
-                animacao_tecla_7();
+                animacaoBasica();
                 printf("Executando animação tecla 7\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
 
             case '8':
-            //gabriel
                  animacao_tecla_8();
                 printf("Executando animação tecla 8\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
             
             case '9':
-            //gabriel
                  animacao_tecla_9();
                 printf("Executando animação tecla 9\n");
                 sleep_ms(300);     // Tempo de teste
                 break;
+                default:
+                    printf("Tecla '%c' não possui ação configurada.\n", key);
+                    break;
+            }
+        }
 
-
-            default:
-      //          set_leds(0, 0, 0); // Desliga todos os LEDs
-     
-                break;
-    } 
-    
-    sleep_ms(100); // Estabilização  
-  
+        // Delay para evitar leituras repetidas
+        sleep_ms(100);
     }
-    
+
+    return 0;
 }
 
-*/
