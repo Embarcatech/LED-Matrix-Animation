@@ -131,7 +131,9 @@ int main() {
                 break;
 
            case '#':
-                printf("tecla # pressionada\n");
+                // Jackson
+                printf("Ação para a tecla #\n");
+                acaoTeclaHashtag();
                 sleep_ms(200);     
                 break;
 

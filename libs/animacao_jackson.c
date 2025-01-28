@@ -104,3 +104,13 @@ void acaoTeclaD(){
     npWrite();
 }
 // FIM DA AÇÃO DA TECLA D
+
+// INICIO DA AÇÃO DA TECLA #
+// Aciona todos os leds em branco com intensidade de 20%
+void acaoTeclaHashtag(){
+    for(int i = 0; i < LED_COUNT; i++){
+        npSetLED(i, 51, 51, 51);
+    }
+    npWrite();
+}
+// FIM DA AÇÃO DA TECLA #
