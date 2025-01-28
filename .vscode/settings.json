@@ -39,6 +39,7 @@
   "files.associations": {
     "stdlib.h": "c",
     "ws2818b.pio.h": "c",
-    "gpio.h": "c"
+    "gpio.h": "c",
+    "definicoes.h": "c"
   }
 }
