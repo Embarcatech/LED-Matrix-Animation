@@ -39,16 +39,16 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
 ## **Funcionalidades**
 1. **Animações para teclas de 0 a 9:**  
    Cada tecla exibe uma animação diferente na matriz de LEDs.
-      -**Tecla 0:** Animacao Tecla 0.
-      -**Tecla 1:** Animacao Quadrado Pulsante.
-      -**Tecla 2:** Animacao Onda.
-      -**Tecla 3:** Animacao Espiral.
-      -**Tecla 4:** Animacao Coracao Pulsante.
-      -**Tecla 5:** Initialize Matrix.
-      -**Tecla 6:** Animacao Basica.
-      -**Tecla 7:** Animacao Basica.
-      -**Tecla 8:** Animacao_tecla_8.
-      -**Tecla 9:** Animacao_tecla_9.
+      - **Tecla 0:** Animacao Tecla 0.
+      - **Tecla 1:** Animacao Quadrado Pulsante.
+      - **Tecla 2:** Animacao Onda.
+      - **Tecla 3:** Animacao Espiral.
+      - **Tecla 4:** Animacao Coracao Pulsante.
+      - **Tecla 5:** Initialize Matrix.
+      - **Tecla 6:** Animacao Basica.
+      - **Tecla 7:** Animacao Basica.
+      - **Tecla 8:** Animacao_tecla_8.
+      - **Tecla 9:** Animacao_tecla_9.
 
 2. **Funções específicas para teclas especiais:**  
    - **A:** Desliga todos os LEDs.  
@@ -58,10 +58,10 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
    - **#:** Liga todos os LEDs na cor branca (20% luminosidade).
 
 3. **Modo de gravação via tecla \*:**  
-   Habilita o modo de gravação (reboot do sistema).
+   - Habilita o modo de gravação (reboot do sistema).
 
 4. **Sinal sonoro opcional:**  
-   Um buzzer pode ser configurado para emitir sons.
+   - Um buzzer pode ser configurado para emitir sons.
 
 ---
 ## **Feedback Visual e Impressão**
@@ -96,11 +96,11 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
 ## **Configuração do Ambiente**
 
 1. **Instale o SDK do Raspberry Pi Pico:**  
-   Siga o guia oficial de instalação do [Pico SDK](https://www.raspberrypi.com/documentation/microcontrollers/c_sdk.html).
+  - Siga o guia oficial de instalação do [Pico SDK](https://www.raspberrypi.com/documentation/microcontrollers/c_sdk.html).
 
 2. **Clone o repositório:**  
    ```bash
-   git clone https://github.com/Embarcatech/LED-Matrix-Animation.git
+  - git clone https://github.com/Embarcatech/LED-Matrix-Animation.git
    cd LED-Matrix-Animation
    ```
 
@@ -117,14 +117,14 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
 ---
 ## **Funcionamento do Código**
    1. ***Inicialização***
-    -Configura os pinos das linhas do teclado como saída.
-    -Configura os pinos das colunas como entrada com resistores de pull-up.
+   - Configura os pinos das linhas do teclado como saída.
+   - Configura os pinos das colunas como entrada com resistores de pull-up.
 
    2. ***Leitura do Teclado***
-    -Verifica as colunas ativas para identificar a tecla pressionada.
+   - Verifica as colunas ativas para identificar a tecla pressionada.
 
    3.***Controle de LEDs***
-    -Define o estado de cada LED ou a animação com base na tecla pressionada.
+   - Define o estado de cada LED ou a animação com base na tecla pressionada.
 
    4.***Loop Principal*** 
     -Monitora continuamente as teclas pressionadas. 
