@@ -104,7 +104,8 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
    cd LED-Matrix-Animation
    ```
 
-3. **Compile o código:**  
+## **Compile o código:**  
+
    1. Certifique-se de que o SDK está instalado e funcionando corretamente no VSCode.
 
    2. Usando a extensão do Raspberry Pi Pico Visual Studio Code extension, siga os passos:
