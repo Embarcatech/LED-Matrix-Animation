@@ -4,6 +4,32 @@
 Hugo S. Dias
 
 ---
+## **Vídeo de Apresentação**
+
+
+## **Colaboradores e Proposta para Divisão das Tarefas**
+
+1. **Líder da equipe** - `Hugo S. Dias`
+2. **Inicialização e preparação codigo base - inicial**. - `JACKSON SILVA DOS SANTOS` 
+3. **Configuração e integração do teclado matricial (4x4).** - `HUGO S. DIAS`  
+4. **Controle e animação dos LEDs para tecla "0".** - `JACKSON SILVA DOS SANTOS`
+5. **Controle e animação dos LEDs para tecla "1".** - `ALINNE DE SOUZA SANTOS CASTRO`
+6. **Controle e animação dos LEDs para tecla "2".** - `ALINNE DE SOUZA SANTOS CASTRO`
+7. **Controle e animação dos LEDs para tecla "3".** - `JOÃO VITOR SOARES AMORIM`
+8. **Controle e animação dos LEDs para tecla "4".** - `JOÃO VITOR SOARES AMORIM`
+9. **Controle e animação dos LEDs para tecla "5".** - `HUGO S. DIAS`
+10. **Controle e animação dos LEDs para tecla "6".** - `SÉRGIO EMÍLIO DA CUNHA MEIRA SANTOS`
+11. **Controle e animação dos LEDs para tecla "7".** - `SÉRGIO EMÍLIO DA CUNHA MEIRA SANTOS`
+12. **Controle e animação dos LEDs para tecla "8".** - `GABRIEL SANTOS DE LACERDA`
+13. **Controle e animação dos LEDs para tecla "9".** - `GABRIEL SANTOS DE LACERDA`
+14. **Configuração e execução das funcionalidades das teclas A, B, C, D e #** - `A definir`
+15. **Implementação da tecla \* (modo gravação via software).** - `A definir`
+16. **Configuração do buzzer (opcional) e participação nos testes.** - `ARTHUR ALENCAR LOPES TRINDADE`
+17. **Documentação, usabilidade e IHM - Interface Home Maquina no README.md** - `JOÃO VITOR SOARES AMORIM`
+---
+
+## **Simulador online**
+https://wokwi.com/projects/420911751869894657
 
 ## **Descrição Geral**
 Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogLab, um teclado matricial 4x4 e uma matriz de LEDs RGB 5x5 (WS2812). Ao pressionar teclas específicas no teclado, diferentes animações de LED são exibidas. Além disso, funcionalidades adicionais como ajuste de cores e luminosidade foram implementadas para ampliar a interação.
@@ -38,28 +64,6 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
    Um buzzer pode ser configurado para emitir sons.
 
 ---
-
-## **Colaboradores e Proposta para Divisão das Tarefas**
-
-1. **Líder da equipe** - `Hugo S. Dias`
-2. **Inicialização e preparação codigo base - inicial**. - `JACKSON SILVA DOS SANTOS` 
-3. **Configuração e integração do teclado matricial (4x4).** - `HUGO S. DIAS`  
-4. **Controle e animação dos LEDs para tecla "0".** - `JACKSON SILVA DOS SANTOS`
-5. **Controle e animação dos LEDs para tecla "1".** - `ALINNE DE SOUZA SANTOS CASTRO`
-6. **Controle e animação dos LEDs para tecla "2".** - `ALINNE DE SOUZA SANTOS CASTRO`
-7. **Controle e animação dos LEDs para tecla "3".** - `JOÃO VITOR SOARES AMORIM`
-8. **Controle e animação dos LEDs para tecla "4".** - `JOÃO VITOR SOARES AMORIM`
-9. **Controle e animação dos LEDs para tecla "5".** - `HUGO S. DIAS`
-10. **Controle e animação dos LEDs para tecla "6".** - `SÉRGIO EMÍLIO DA CUNHA MEIRA SANTOS`
-11. **Controle e animação dos LEDs para tecla "7".** - `SÉRGIO EMÍLIO DA CUNHA MEIRA SANTOS`
-12. **Controle e animação dos LEDs para tecla "8".** - `GABRIEL SANTOS DE LACERDA`
-13. **Controle e animação dos LEDs para tecla "9".** - `GABRIEL SANTOS DE LACERDA`
-14. **Configuração e execução das funcionalidades das teclas A, B, C, D e #** - `A definir`
-15. **Implementação da tecla \* (modo gravação via software).** - `A definir`
-16. **Configuração do buzzer (opcional) e participação nos testes.** - `ARTHUR ALENCAR LOPES TRINDADE`
-17. **Documentação, usabilidade e IHM - Interface Home Maquina no README.md** - `JOÃO VITOR SOARES AMORIM`
----
-
 ## **Feedback Visual e Impressão**
    - Exibe no terminal a tecla pressionada.
    - Os LEDs indicam visualmente a interação do usuário.
@@ -70,8 +74,10 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
    - Teclado Matricial: 4x4
    - LEDs NeoPixel
    - Resistores (para os LEDs, se necessário)
-   - Fios e Protoboard para conexões
+   - Fios e Protoboard para conexões: Para conexões externas a BitDogLab
 ## **Diagrama de Conexões**
+
+![img/componentesconectados.jpg](img/componentesconectados.jpg)
 
 1. **Teclado Matricial (4x4):**
    - Linhas -> GPIOs 18, 19, 20, 4
@@ -131,4 +137,3 @@ Este projeto utiliza um Raspberry Pi Pico W na plataforma de apredizagem BitDogL
 
 ---
 
-## **Vídeo de Apresentação**
