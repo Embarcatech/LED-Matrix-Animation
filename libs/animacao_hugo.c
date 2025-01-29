@@ -16,7 +16,7 @@ int animacaoBasica(){
      npClear();
     //exemplo de uso da função npSetLED para acender um LED de cada vez
     for (uint i = 0; i < LED_COUNT; i++){
-        npSetLED(i, 128, 0, 0);
+        npSetLED(i, 60, 0, 0);
         sleep_ms(200);
         npWrite();
         }

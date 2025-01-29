@@ -180,7 +180,7 @@ int main() {
                 break;
             case '5':
             //hugo
-                initializeMatrix(ledMatrix, 0, 255, 0);
+                initializeMatrix(ledMatrix, 10, 60, 10);
                 animateMatrix(ledMatrix, 15); // Executa a animação
                 printf("Executando animação tecla 5\n");
                 sleep_ms(300);     // Tempo de teste
