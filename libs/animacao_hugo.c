@@ -2,6 +2,8 @@
 #include "pico/stdlib.h"
 
 
+#include "definicoes.h"
+
 
 int animacaoBasica(){
   
