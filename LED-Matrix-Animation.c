@@ -92,7 +92,7 @@ int main() {
 
         if (!gpio_get(BUTTON_PIN_B)) { // Botão pressionado (nível baixo)
             printf("Botão B pressionado! Executando ação...\n");
-            tocarMusicaCurta();
+            musicabottonB();
         }
 
         // Escaneia o teclado

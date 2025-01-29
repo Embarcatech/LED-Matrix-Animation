@@ -46,3 +46,58 @@ void tocarMusicaCurta() {
     pwm_set_enabled(slice_num, false);
 
 }
+//Alinne de Souza Santos Castro
+void musicabottonB(){
+
+const uint16_t frequencia[] = {
+    262,262,294,262,349,330,
+    262,262,294,262,392,349,
+    262,262,262,440,349,330,
+    440,440,392,349,330,294
+};
+
+const uint16_t duty[] = {
+    300, 300, 300, 300, 300, 300,  
+    300, 300, 300, 300, 300, 300,  
+    300, 300, 300, 300, 300, 300,  
+    300, 300, 300, 300, 300, 300,  
+};
+const uint16_t duracao[] = {
+    400, 400, 800, 400, 400, 800,  // Parabéns a você
+    400, 400, 800, 400, 400, 800,  // Nesta data querida
+    400, 200, 200, 400, 400, 400,800, // Muitas felicidades
+    400, 360, 450, 400, 400, 350,800  // Muitos anos de vida
+ };
+
+const char* letras[] = {
+        "Parabéns a você,",
+        "Nesta data querida,",
+        "Muitas felicidades,",
+        "Muitos anos de vida."
+    };
+const uint16_t nota = sizeof(frequencia) / sizeof(frequencia[0]);
+uint slice_num = pwm_gpio_to_slice_num(BUZZER_PIN);
+
+// Inicializa o PWM para o pino do buzzer
+pwm_set_enabled(slice_num, true);
+uint16_t letra_index = 0;
+
+for (uint16_t i = 0; i < nota; i++) {
+    // Configura a frequência e o duty cycle do buzzer
+    set_pwm_pin(BUZZER_PIN, frequencia[i], duty[i]);
+    
+     // A cada mudança de parte da música, exibe a letra correspondente
+        if (i == 0 || i == 6 || i == 12 || i == 18) {
+            printf("%s\n", letras[letra_index]);
+            letra_index++;
+        }
+    // Toca a nota pela duração especificada
+    sleep_ms(duracao[i]);
+    
+    // Pausa entre as notas
+    sleep_ms(50);
+}
+
+// Desativa o PWM ao final de todas as notas
+pwm_set_enabled(slice_num,false);
+}
